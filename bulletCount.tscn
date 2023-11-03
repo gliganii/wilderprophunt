@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://kfgdqp22bcnt"]
+[gd_scene load_steps=2 format=3 uid="uid://dlnohswdy866h"]
 
 [ext_resource type="Texture2D" uid="uid://56k1mmrrevcu" path="res://images/bullet.png" id="1_mynj6"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 961.0
-offset_top = -1.0
-offset_right = 1153.0
-offset_bottom = 79.0
+offset_left = 939.0
+offset_top = 6.0
+offset_right = 1131.0
+offset_bottom = 86.0
 
 [node name="Bullet" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(137, 39)
@@ -19,3 +19,6 @@ texture = ExtResource("1_mynj6")
 layout_mode = 2
 size_flags_horizontal = 8
 text = "x 10"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2

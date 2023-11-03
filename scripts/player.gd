@@ -13,10 +13,7 @@ var bullet = load("res://weapons/bullet.tscn")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	var scene = load("res://healthBar.tscn")
-	var instance = scene.instance()
-	var viewport = get_node("Viewport")
-	viewport.add_child(instance)
+
 func _physics_process(delta):
 	var speed_multiplier = 1.0
 	
@@ -61,3 +58,4 @@ func _input(event):
 			rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 			$Camera3D.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 			$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(40), deg_to_rad(60))
+			
