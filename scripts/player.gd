@@ -13,7 +13,10 @@ var bullet = load("res://weapons/bullet.tscn")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	var scene = load("res://healthBar.tscn")
+	var instance = scene.instance()
+	var viewport = get_node("Viewport")
+	viewport.add_child(instance)
 func _physics_process(delta):
 	var speed_multiplier = 1.0
 	

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b18ut41u1nokl"]
+
+[ext_resource type="Texture2D" uid="uid://dpxntf21bq0a4" path="res://images/healthheart.png" id="1_wux60"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = -1.0
+offset_right = 376.0
+offset_bottom = 78.0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(34.25, 32)
+scale = Vector2(0.079375, 0.0866873)
+texture = ExtResource("1_wux60")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(83, 32.0625)
+scale = Vector2(0.0778125, 0.0864938)
+texture = ExtResource("1_wux60")
+
+[node name="Sprite2D3" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(131, 32)
+scale = Vector2(0.0746875, 0.0847523)
+texture = ExtResource("1_wux60")
