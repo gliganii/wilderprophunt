@@ -12,3 +12,11 @@ func _process(_delta):
 	# calculate the vector between mouse and center, than take only 10% of the value 
 	var offset = center - get_global_mouse_position() * 0.1
 	tween.tween_property(node, "position", offset, 1.0)
+
+
+func _on_exit_game_pressed():
+	get_tree().quit()
+
+
+func _on_start_pressed():
+	get_tree().change_scene_to_file("res://map1.tscn")
