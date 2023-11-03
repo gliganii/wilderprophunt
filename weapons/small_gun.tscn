@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp04231xtu0ys"]
+
+[ext_resource type="PackedScene" uid="uid://4dc4fr306q8n" path="res://art/small_gun.glb" id="1_gevuo"]
+
+[sub_resource type="GDScript" id="GDScript_ht48u"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="small_gun" type="Node3D"]
+script = SubResource("GDScript_ht48u")
+
+[node name="model" parent="." instance=ExtResource("1_gevuo")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="barrel" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.361208, 0.428255, 0)
