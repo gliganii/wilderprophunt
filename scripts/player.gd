@@ -8,6 +8,9 @@ const RUNNING_SPEED_MULTIPLIER = 2.0
 # TODO: read from config file when settings are setup
 const MOUSE_SENSITIVITY = 0.002
 
+@onready var gun_barrel = $Camera3D/gun/barrel
+var bullet = load("res://weapons/bullet.tscn")
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -44,8 +47,13 @@ func _input(event):
 	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			var instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 			$Camera3D.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
-			$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+			$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(40), deg_to_rad(60))
