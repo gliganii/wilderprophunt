@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4e5o1f4k3jb"]
+
+[ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
+[ext_resource type="Script" path="res://player.gd" id="1_imfkf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jk6w4"]
+size = Vector3(1.5, 6, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_imfkf")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="character" parent="Pivot" instance=ExtResource("1_2fvoi")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.87506, 0)
+shape = SubResource("BoxShape3D_jk6w4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 5.58073, -0.388263)
