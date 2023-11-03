@@ -16,7 +16,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "x 100"
+text = "100"
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(-41, 11)
