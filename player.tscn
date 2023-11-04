@@ -10,17 +10,21 @@ size = Vector3(1.5, 6, 1)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_hny0h")
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="character" parent="Pivot" instance=ExtResource("1_2fvoi")]
-transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.87506, 0)
 shape = SubResource("BoxShape3D_jk6w4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 5.58073, -0.388263)
+[node name="model" parent="." instance=ExtResource("1_2fvoi")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
 
-[node name="gun" parent="Camera3D" instance=ExtResource("3_vo5bf")]
+[node name="HunterCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 5.58073, -0.463961)
+
+[node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.569355, -1.16455, -1.0148)
+
+[node name="PropCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.21847, 4.09928)
+
+[node name="propSelector" type="RayCast3D" parent="PropCamera"]
+transform = Transform3D(5, 0, 0, 0, -1.7101, -4.69846, 0, 4.69846, -1.7101, -0.00268841, 0.501773, -4.98412)

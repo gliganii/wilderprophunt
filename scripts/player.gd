@@ -8,11 +8,25 @@ const RUNNING_SPEED_MULTIPLIER = 2.0
 # TODO: read from config file when settings are setup
 const MOUSE_SENSITIVITY = 0.002
 
-@onready var gun_barrel = $Camera3D/gun/barrel
+@onready var gun_barrel = $HunterCamera/gun/barrel
+@onready var prop_selector = $PropCamera/propSelector
 var bullet = load("res://weapons/bullet.tscn")
+var camera
+@export var isProp = false
+
+var health = 100
+var bullets = 20
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if isProp == true:
+		remove_child($HunterCamera)
+		camera = $PropCamera
+		add_to_group("hunters")
+	else:
+		remove_child($PropCamera)
+		camera = $HunterCamera
+		add_to_group("propPlayers")
 
 func _physics_process(delta):
 	var speed_multiplier = 1.0
@@ -39,6 +53,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
 	move_and_slide()
+	
+func hit(damage):
+	health -= damage
+	if health < 0:
+		#TODO: show death screen
+		queue_free()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -50,11 +70,28 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			var instance = bullet.instantiate()
+			instance.player = self
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-			$Camera3D.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
-			$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(40), deg_to_rad(60))
+		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
+		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
+		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(40), deg_to_rad(60))
+
+	if event.is_action_pressed("select_prop") and isProp == true:
+		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+			var prop = prop_selector.get_collider()
+			
+			var character = prop.get_child(0).duplicate()
+			var collisionShape = prop.get_child(1).duplicate()
+			
+			$model.remove_child($model.get_child(0))
+			$collisionShape.replace_by(collisionShape)
+			$model.replace_by(character)
+			
+			$model.scale = prop.scale
+			$collisionShape.scale = prop.scale
+			
+			health = prop.health
