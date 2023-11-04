@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d6ii5nkf4msg"]
+
+[ext_resource type="PackedScene" uid="uid://ccjg65q4w72or" path="res://props/mailbox/mailbox_01_-_3d_scan_quixel_megascans.glb" id="1_dt5t7"]
+[ext_resource type="Script" path="res://scripts/prop.gd" id="1_x3tij"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ny7s"]
+size = Vector3(0.66999, 1.26746, 0.633199)
+
+[node name="mailbox" type="RigidBody3D"]
+mass = 10.55
+script = ExtResource("1_x3tij")
+health = 35
+
+[node name="model" parent="." instance=ExtResource("1_dt5t7")]
+transform = Transform3D(1.40587, 0, -1.42251, 0, 2, 0, 1.42251, 0, 1.40587, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.00209466, 0, -2, 0, 2, 0, 2, 0, 0.00209466, 0, 1.26098, 0)
+shape = SubResource("BoxShape3D_5ny7s")

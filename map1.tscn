@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=21 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://dpypjh7roga8o" path="res://buildings/city_hall/city_hall.tscn" id="12_gvqkw"]
 [ext_resource type="PackedScene" uid="uid://bobofkyncnqib" path="res://buildings/runway/runway.tscn" id="13_04qio"]
 [ext_resource type="PackedScene" uid="uid://d3judlxinxtgc" path="res://buildings/runway_with_hangar/runway_with_hangar.tscn" id="14_a5amd"]
+[ext_resource type="PackedScene" uid="uid://d6ii5nkf4msg" path="res://props/mailbox/mailbox.tscn" id="15_fieip"]
+[ext_resource type="PackedScene" uid="uid://sudubvldfxou" path="res://props/monitor/monitor.tscn" id="16_aaayq"]
+[ext_resource type="PackedScene" uid="uid://ulx8esyw1jjo" path="res://props/concrete_barrier/concrete_barrier.tscn" id="17_pgbx2"]
+[ext_resource type="PackedScene" uid="uid://b53f8rpanbyda" path="res://props/construction_barrel/construction_barrel.tscn" id="18_5b0xs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(1000, 0.552, 1000)
@@ -48,9 +52,10 @@ omni_range = 4096.0
 [node name="Player" parent="." instance=ExtResource("1_47dnf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0369, 0)
 collision_mask = 29
+is_prop = true
 
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
+transform = Transform3D(0.00783644, 0, -0.999969, 0, 1, 0, 0.999969, 0, 0.00783644, 24.8345, 1.22269, -5.77058)
 collision_mask = 13
 mass = 0.01
 
@@ -103,14 +108,145 @@ script = ExtResource("11_piuxo")
 health = 70
 
 [node name="city_hall" parent="." instance=ExtResource("12_gvqkw")]
-transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 67.3423, 1.25253, -104.179)
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 67.3423, 0.196651, -104.179)
 collision_mask = 11
 
 [node name="runway" parent="." instance=ExtResource("13_04qio")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.73676, 0.275879, -67.369)
+collision_layer = 16
+collision_mask = 11
 
-[node name="runway_with_hangar" parent="." instance=ExtResource("14_a5amd")]
+[node name="mailbox" parent="." groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9865, 0.276, 28.1228)
+collision_layer = 2
+collision_mask = 13
+
+[node name="mailbox2" parent="." groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -37.1829, 0.276, 27.8749)
+collision_layer = 2
+collision_mask = 13
+
+[node name="mailbox3" parent="." groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6191, 0.276, -69.2373)
+collision_layer = 2
+collision_mask = 13
+
+[node name="monitor" parent="." groups=["props"] instance=ExtResource("16_aaayq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23988, 0.280161, -5.79939)
+collision_layer = 2
+collision_mask = 13
+
+[node name="concrete_barriers" type="Node" parent="."]
+
+[node name="concrete_barrier2" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 34.9039)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 24.0941, 0.276, 23.9577)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier3" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 16.5981)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier4" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(0.389429, 0, -0.921056, 0, 1, 0, 0.921056, 0, 0.389429, 24.0941, 0.276, 9.23944)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier5" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.1711, 0.828, 1.45136)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier6" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 24.323, 0.552, -13.204)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier7" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.5385, 0.828, -20.5608)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier8" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 24.6184, 0.552, -27.9193)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier9" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 63.5976)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier10" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 24.0941, 0.276, 93.6513)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier11" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(3.25993e-09, 0.997215, 0.0745784, 4.35897e-08, -0.0745784, 0.997215, 1, 0, -4.37114e-08, 24.162, 0.552, 86.2917)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier12" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(0.0429916, 0, -0.999075, 0, 1, 0, 0.999075, 0, 0.0429916, 24.0941, 0.478834, 78.9331)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier13" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.1711, 0.557552, 71.145)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier14" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 24.323, 0.552, 56.4897)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier15" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(-0.908705, 0, 0.417439, 0, 1, 0, -0.417439, 0, -0.908705, 28.9587, 0.828, 49.1329)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="concrete_barrier16" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
+transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 24.6184, 0.552, 41.7744)
+collision_layer = 2
+collision_mask = 13
+health = 80
+
+[node name="runways_with_hangars" type="Node" parent="."]
+
+[node name="runway_with_hangar" parent="runways_with_hangars" instance=ExtResource("14_a5amd")]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -264.881, 0.019042, 100.678)
+collision_layer = 16
+collision_mask = 11
 
-[node name="runway_with_hangar2" parent="." instance=ExtResource("14_a5amd")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -265.29, -0.00925446, -13.8595)
+[node name="runway_with_hangar2" parent="runways_with_hangars" instance=ExtResource("14_a5amd")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -265.291, -0.00925446, -13.8595)
+collision_layer = 16
+collision_mask = 11
+
+[node name="construction_barrels" type="Node" parent="."]
+
+[node name="construction_barrel" parent="." instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5027, 0.280161, -18.7545)
