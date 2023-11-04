@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://co6hvjweafck8"]
 
-[ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
+[ext_resource type="Script" path="res://level.gd" id="1_46jaj"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
 [ext_resource type="PackedScene" uid="uid://w1js8rnwvgkn" path="res://props/office_chair.tscn" id="3_t3yxm"]
 [ext_resource type="PackedScene" uid="uid://c6qphob38yump" path="res://props/airplane/airplane.tscn" id="4_j1468"]
@@ -25,8 +25,9 @@ size = Vector3(1000, 0.552, 1000)
 [sub_resource type="BoxMesh" id="BoxMesh_id3w7"]
 size = Vector3(1000, 0.5, 1000)
 
-[node name="Node3D" type="Node3D"]
+[node name="root" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000495434, 0, 0)
+script = ExtResource("1_46jaj")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_layer = 8
@@ -49,11 +50,6 @@ distance_fade_begin = 172.66
 distance_fade_shadow = 630.4
 omni_range = 4096.0
 
-[node name="Player" parent="." instance=ExtResource("1_47dnf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0369, 0)
-collision_mask = 29
-is_prop = true
-
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
 transform = Transform3D(0.00783644, 0, -0.999969, 0, 1, 0, 0.999969, 0, 0.00783644, 24.8345, 1.22269, -5.77058)
 collision_mask = 13
@@ -63,6 +59,13 @@ mass = 0.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, 2.31008)
 collision_layer = 2
 collision_mask = 13
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players"]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+spawn_limit = 32
 
 [node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.88935, 0.25, -106.011)

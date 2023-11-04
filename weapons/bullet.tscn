@@ -7,6 +7,12 @@ uv2_padding = 0.0
 radius = 0.05
 height = 0.25
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2n3x8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf5kp"]
 albedo_color = Color(0.788235, 0.6, 0, 1)
 metallic = 0.86
@@ -47,6 +53,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qf5kp")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-3.698, 0, 0, 0, 0.246624, 0, 0, 0, 3.53322, 0, 0.0470174, 0)
 collision_mask = 11
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2n3x8")
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wkxnq")
