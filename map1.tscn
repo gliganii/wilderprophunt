@@ -119,21 +119,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.73676, 0.275879, -67
 collision_layer = 16
 collision_mask = 11
 
-[node name="mailbox" parent="." groups=["props"] instance=ExtResource("15_fieip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9865, 0.276, 28.1228)
-collision_layer = 2
-collision_mask = 13
-
-[node name="mailbox2" parent="." groups=["props"] instance=ExtResource("15_fieip")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -37.1829, 0.276, 27.8749)
-collision_layer = 2
-collision_mask = 13
-
-[node name="mailbox3" parent="." groups=["props"] instance=ExtResource("15_fieip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6191, 0.276, -69.2373)
-collision_layer = 2
-collision_mask = 13
-
 [node name="monitor" parent="." groups=["props"] instance=ExtResource("16_aaayq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23988, 0.280161, -5.79939)
 collision_layer = 2
@@ -251,5 +236,22 @@ collision_mask = 11
 
 [node name="construction_barrels" type="Node" parent="."]
 
-[node name="construction_barrel" parent="." instance=ExtResource("18_5b0xs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5027, 0.280161, -18.7545)
+[node name="construction_barrel" parent="construction_barrels" instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5022, 0.280161, -18.7545)
+
+[node name="mailboxes" type="Node" parent="."]
+
+[node name="mailbox" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.986, 0.276, 28.1228)
+collision_layer = 2
+collision_mask = 13
+
+[node name="mailbox2" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -37.1834, 0.276, 27.8749)
+collision_layer = 2
+collision_mask = 13
+
+[node name="mailbox3" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6186, 0.276, -69.2373)
+collision_layer = 2
+collision_mask = 13
