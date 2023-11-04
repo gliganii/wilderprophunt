@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=7 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
+[ext_resource type="PackedScene" uid="uid://dlnohswdy866h" path="res://bulletCount.tscn" id="2_bpimo"]
+[ext_resource type="PackedScene" uid="uid://cow6jxa0rd1om" path="res://healthBar.tscn" id="3_tv7wt"]
 [ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jk6w4"]
@@ -10,6 +12,11 @@ size = Vector3(1, 2.5125, 1)
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 5
 script = ExtResource("1_hny0h")
+
+[node name="bulletBar" parent="." instance=ExtResource("2_bpimo")]
+position = Vector2(1020, 8)
+
+[node name="healthBar" parent="." instance=ExtResource("3_tv7wt")]
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2388, 0)
