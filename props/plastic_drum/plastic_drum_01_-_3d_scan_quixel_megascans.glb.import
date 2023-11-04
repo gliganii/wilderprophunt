@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bsg8ai3dse5uy"
-path="res://.godot/imported/building.glb-f06a21516c62a8347bb70bcc9d2883bd.scn"
+uid="uid://cna84td3bfkfk"
+path="res://.godot/imported/plastic_drum_01_-_3d_scan_quixel_megascans.glb-550307c70e4c90265f17d6462c592967.scn"
 
 [deps]
 
-source_file="res://buildings/building/building.glb"
-dest_files=["res://.godot/imported/building.glb-f06a21516c62a8347bb70bcc9d2883bd.scn"]
+source_file="res://props/plastic_drum/plastic_drum_01_-_3d_scan_quixel_megascans.glb"
+dest_files=["res://.godot/imported/plastic_drum_01_-_3d_scan_quixel_megascans.glb-550307c70e4c90265f17d6462c592967.scn"]
 
 [params]
 

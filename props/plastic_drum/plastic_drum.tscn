@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yweoop7phf4y"]
+
+[ext_resource type="PackedScene" uid="uid://cna84td3bfkfk" path="res://props/plastic_drum/plastic_drum_01_-_3d_scan_quixel_megascans.glb" id="1_vlnst"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g5khe"]
+height = 0.579441
+radius = 0.224694
+
+[node name="plastic_drum" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_vlnst")]
+transform = Transform3D(1.74529, 0, -1.78996, 0, 2.5, 0, 1.78996, 0, 1.74529, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.00484228, 0.705861, 0.0153673)
+shape = SubResource("CylinderShape3D_g5khe")
