@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://co6hvjweafck8"]
 
-[ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
+[ext_resource type="Script" path="res://level.gd" id="1_46jaj"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
 [ext_resource type="PackedScene" uid="uid://w1js8rnwvgkn" path="res://props/office_chair.tscn" id="3_t3yxm"]
 
@@ -10,8 +10,9 @@ size = Vector3(100, 0.5, 100)
 [sub_resource type="BoxMesh" id="BoxMesh_id3w7"]
 size = Vector3(100, 0.5, 100)
 
-[node name="Node3D" type="Node3D"]
+[node name="root" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000495434, 0, 0)
+script = ExtResource("1_46jaj")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -26,12 +27,15 @@ mesh = SubResource("BoxMesh_id3w7")
 transform = Transform3D(-0.111678, -0.753827, 0.647513, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878584, -0.069108, 5.54773, 2.63313, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_47dnf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0369, 0)
-is_prop = true
-
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
 
 [node name="office_chair" parent="." groups=["props"] instance=ExtResource("3_t3yxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, -14.8365)
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players"]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+spawn_limit = 32

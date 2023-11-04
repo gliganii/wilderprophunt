@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://mainMenu.gd" id="1_jegxk"]
 [ext_resource type="Script" path="res://Control.gd" id="1_r5c77"]
 
-[sub_resource type="Gradient" id="Gradient_duoio"]
+[sub_resource type="Gradient" id="Gradient_odakf"]
 offsets = PackedFloat32Array(0, 0.326347, 0.847305, 0.997006, 1)
 colors = PackedColorArray(0.332937, 0.187507, 0.00586512, 1, 0.511732, 0.409417, 0.152655, 1, 0.663769, 0.814596, 0.428717, 1, 0.693043, 0.892612, 0.481872, 1, 0.681333, 0.861406, 0.46061, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_oo87g"]
-gradient = SubResource("Gradient_duoio")
+gradient = SubResource("Gradient_odakf")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -91,6 +91,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Exit Game"
-
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitGameButton" to="." method="_on_exit_game_pressed"]
