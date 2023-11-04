@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=14 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://be0c4acsxy555" path="res://props/chibi_anime/chibi_anime.tscn" id="7_3rj65"]
 [ext_resource type="PackedScene" uid="uid://djr808ebxwod7" path="res://props/shoes/shoes.tscn" id="8_1usow"]
 [ext_resource type="PackedScene" uid="uid://oeor6locdngk" path="res://props/mug/mug.tscn" id="9_p7wwi"]
+[ext_resource type="PackedScene" uid="uid://5jbfccm2sdwt" path="res://props/skeleton/skeleton.tscn" id="10_8fj86"]
+[ext_resource type="Script" path="res://scripts/prop.gd" id="11_piuxo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
-size = Vector3(100, 0.5, 100)
+size = Vector3(100, 0.520889, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_id3w7"]
 size = Vector3(100, 0.5, 100)
@@ -29,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00444496, 0)
 mesh = SubResource("BoxMesh_id3w7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.111678, -0.753827, 0.647513, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878584, -0.069108, 5.54773, 2.63313, 0)
+transform = Transform3D(-0.111678, -0.753827, 0.647512, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878582, -0.0691078, -0.530609, 22.1521, 3.68558)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_47dnf")]
@@ -38,24 +40,52 @@ is_prop = true
 
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
+mass = 0.01
 
 [node name="office_chair" parent="." groups=["props"] instance=ExtResource("3_t3yxm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, -14.8365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, 2.31008)
+collision_layer = 2
+collision_mask = 7
 
 [node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7995, 0.25, -26.3687)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
 
 [node name="horse" parent="." groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8472, 0.25, -5.73461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8472, 0.25, 11.274)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
 
 [node name="soccer_ball" parent="." groups=["props"] instance=ExtResource("6_5d7dt")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -27.3299, 0.710637, -8.26949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3299, 0.710637, 5.78652)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
 
 [node name="chibi_anime" parent="." groups=["props"] instance=ExtResource("7_3rj65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.809, 0.25, -4.97206)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2605, 0.25, -4.97206)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
 
 [node name="shoes" parent="." groups=["props"] instance=ExtResource("8_1usow")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -17.122, 0.25, 5.83098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.122, 0.27119, 5.83098)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
 
 [node name="mug" parent="." groups=["props"] instance=ExtResource("9_p7wwi")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -30.3616, 0.25, -1.48441)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7171, 0.277244, -1.48441)
+collision_layer = 2
+collision_mask = 7
+mass = 0.01
+
+[node name="skeleton" parent="." groups=["props"] instance=ExtResource("10_8fj86")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69314, 0.260445, 24.8506)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("11_piuxo")
+health = 70

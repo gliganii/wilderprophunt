@@ -8,6 +8,7 @@
 size = Vector3(1, 2.5125, 1)
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 5
 script = ExtResource("1_hny0h")
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
@@ -28,3 +29,4 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609
 
 [node name="propSelector" type="RayCast3D" parent="PropCamera"]
 transform = Transform3D(100, 0, 0, 0, -3.4202, -93.9693, 0, 9.39693, -34.202, -0.00268841, 0.28965, -4.88209)
+collision_mask = 2

@@ -4,14 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://chl3m1q3u650g" path="res://art/sofa.glb" id="1_xav67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1beku"]
-size = Vector3(2.71146, 0.913362, 1.02804)
+size = Vector3(2.03417, 0.760086, 1.02804)
 
-[node name="prop" type="StaticBody3D"]
+[node name="prop" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0803697, 0)
+collision_layer = 2
+collision_mask = 7
+mass = 0.03
+continuous_cd = true
+max_contacts_reported = 100
+contact_monitor = true
 script = ExtResource("1_4c82f")
 
 [node name="model" parent="." instance=ExtResource("1_xav67")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.63173, 0)
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24913, 0.0390233)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.16439, 0.0390233)
 shape = SubResource("BoxShape3D_1beku")

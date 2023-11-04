@@ -15,7 +15,7 @@ func _process(delta):
 			ray.get_collider().hit(damage)
 		else:
 			player.hit(damage)
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(5.0).timeout
 		queue_free()
 
 func _on_timer_timeout():

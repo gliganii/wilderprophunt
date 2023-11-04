@@ -67,7 +67,7 @@ func _input(event):
 	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
+		elif is_prop == false:
 			var instance = bullet.instantiate()
 			instance.player = self
 			instance.position = gun_barrel.global_position

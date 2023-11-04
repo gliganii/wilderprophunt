@@ -7,11 +7,12 @@
 height = 2.09026
 radius = 1.00115
 
-[node name="mug" type="StaticBody3D"]
+[node name="mug" type="RigidBody3D"]
 script = ExtResource("1_u8ne0")
 
 [node name="model" parent="." instance=ExtResource("1_yk0vc")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.007, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.515212, 0)
 shape = SubResource("CylinderShape3D_63alv")

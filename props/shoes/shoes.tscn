@@ -6,12 +6,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_yr3n4"]
 size = Vector3(2.3769, 1.50562, 3.06996)
 
-[node name="shoes" type="StaticBody3D"]
+[node name="shoes" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0468355, 0)
 script = ExtResource("1_3lpgx")
 
 [node name="model" parent="." instance=ExtResource("1_pt3j7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.603008)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0.198307)
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.719583, 0.0925534)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.14376, 0.0925534)
 shape = SubResource("BoxShape3D_yr3n4")

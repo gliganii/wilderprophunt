@@ -6,7 +6,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nprii"]
 height = 1.68255
 
-[node name="chibi_anime" type="StaticBody3D"]
+[node name="chibi_anime" type="RigidBody3D"]
 script = ExtResource("1_rh02m")
 
 [node name="model" parent="." instance=ExtResource("1_tvtc0")]

@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_euat2"]
 size = Vector3(1.16972, 4.02431, 4.95963)
 
-[node name="horse" type="StaticBody3D"]
+[node name="horse" type="RigidBody3D"]
 script = ExtResource("1_8hjyu")
 
 [node name="model" parent="." instance=ExtResource("1_sahng")]
