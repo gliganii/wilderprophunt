@@ -9,7 +9,7 @@
 size = Vector3(1, 2.5125, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qvpya"]
-properties/0/path = NodePath("PlayerInput:direction")
+properties/0/path = NodePath(".:direction")
 properties/0/spawn = false
 properties/0/sync = true
 properties/0/watch = false
@@ -51,6 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609
 transform = Transform3D(10, 0, 0, 0, -3.4202, -9.39693, 0, 9.39693, -3.4202, -0.00268841, 0.28965, -4.88209)
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
 replication_config = SubResource("SceneReplicationConfig_qvpya")
 script = ExtResource("4_52aqd")
 

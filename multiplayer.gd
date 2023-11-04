@@ -11,7 +11,6 @@ func _ready():
 		_on_host_pressed.call_deferred()
 	
 func _on_host_pressed():
-	print("handicapat")
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
@@ -22,7 +21,7 @@ func _on_host_pressed():
 	
 func _on_connect_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("127.0.0.1", PORT)
+	peer.create_client("localhost", PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client.")
 		return
