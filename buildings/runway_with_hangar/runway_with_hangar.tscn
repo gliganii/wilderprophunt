@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3judlxinxtgc"]
+[gd_scene load_steps=8 format=3 uid="uid://d3judlxinxtgc"]
 
 [ext_resource type="PackedScene" uid="uid://b1jla34mmeu33" path="res://buildings/runway_with_hangar/runway_and_hangar.glb" id="1_priqa"]
 
@@ -10,13 +10,16 @@ radius = 10.2491
 size = Vector3(31.6818, 1.4627, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ukkj3"]
-size = Vector3(31.3897, 2.48309, 57.2473)
+size = Vector3(31.3897, 1.99406, 56.0657)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1iwjq"]
 size = Vector3(0.234896, 2.0386, 39.5173)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_21vk7"]
 size = Vector3(31.4646, 3.29806, 0.852646)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mpqn"]
+size = Vector3(31.5197, 2, 0.563052)
 
 [node name="runway_with_hangar" type="StaticBody3D"]
 
@@ -46,3 +49,7 @@ shape = SubResource("BoxShape3D_1iwjq")
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320677, 0.769628, 14.4947)
 shape = SubResource("BoxShape3D_21vk7")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.349621, -0.57304, 71.0738)
+shape = SubResource("BoxShape3D_3mpqn")
