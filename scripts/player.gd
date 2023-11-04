@@ -19,9 +19,8 @@ const MOUSE_SENSITIVITY = 0.002
 @onready var prop_selector = $PropCamera/propSelector
 var camera
 @export var is_prop = false
-
-var health = 100
-var bullets = 20
+@export var health = 100
+@export var bullets = 20
 
 func _ready():
 	if is_prop == true:
@@ -37,6 +36,9 @@ func _ready():
 		camera.current = true
 
 func _physics_process(delta):
+	$healthBar.value = health
+	$bulletBar.value = bullets
+	
 	var speed_multiplier = 1.0
 	
 	if not is_on_floor():

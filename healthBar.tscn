@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cow6jxa0rd1om"]
+
+[ext_resource type="Script" path="res://healthBar.gd" id="1_01hay"]
+[ext_resource type="Texture2D" uid="uid://dpxntf21bq0a4" path="res://images/healthheart.png" id="1_wux60"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_01hay")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 100.0
+offset_top = 11.0
+offset_right = 476.0
+offset_bottom = 90.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(-60, 14)
+scale = Vector2(0.101875, 0.0936533)
+texture = ExtResource("1_wux60")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "100"
