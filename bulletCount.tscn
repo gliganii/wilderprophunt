@@ -1,23 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlnohswdy866h"]
+[gd_scene load_steps=3 format=3 uid="uid://dlnohswdy866h"]
 
+[ext_resource type="Script" path="res://bulletCount.gd" id="1_8ita4"]
 [ext_resource type="Texture2D" uid="uid://56k1mmrrevcu" path="res://images/bullet.png" id="1_mynj6"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_8ita4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 1096.0
-offset_top = 18.0
-offset_right = 1288.0
-offset_bottom = 98.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 98.0
+offset_right = 290.0
+offset_bottom = 80.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="NoBullets" type="Label" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-text = "100"
-
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-54, 16)
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(-57, 14)
 scale = Vector2(0.0758334, 0.0851042)
 texture = ExtResource("1_mynj6")
+
+[node name="NoBullets" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "100"
