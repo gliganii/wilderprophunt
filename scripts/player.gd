@@ -17,7 +17,6 @@ const MOUSE_SENSITIVITY = 0.002
 
 @onready var gun_barrel = $HunterCamera/gun/barrel
 @onready var prop_selector = $PropCamera/propSelector
-var bullet = load("res://weapons/bullet.tscn")
 var camera
 @export var is_prop = false
 
@@ -26,11 +25,11 @@ var bullets = 20
 
 func _ready():
 	if is_prop == true:
-		remove_child($HunterCamera)
+#		remove_child($HunterCamera)
 		camera = $PropCamera
 		add_to_group("hunters")
 	else:
-		remove_child($PropCamera)
+#		remove_child($PropCamera)
 		camera = $HunterCamera
 		add_to_group("propPlayers")
 	
@@ -61,7 +60,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
 	move_and_slide()
-	
+
+		
 func hit(damage):
 	health -= damage
 	if health < 0:
@@ -72,11 +72,12 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	if event.is_action_pressed("click"):
+	if   event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			var instance = bullet.instantiate()
+		else: if input.shooting:
+			input.shooting = false
+			var instance = preload("res://weapons/bullet.tscn").instantiate()
 			instance.player = self
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
@@ -102,3 +103,27 @@ func _input(event):
 			$collisionShape.scale = prop.scale
 			
 			health = prop.health
+			
+		
+func pickRoleSwitchCameras():
+	if is_prop == true:
+		print("Prop picked!")
+		camera = $PropCamera
+	else:
+		print("Hunter picked!")
+		camera = $HunterCamera
+	
+	if player == multiplayer.get_unique_id():
+		camera.current = true
+	remove_child($PickControl)
+
+func _on_hunter_pick_button_button_down():
+	is_prop = false
+	pickRoleSwitchCameras()
+	pass # Replace with function body.
+
+
+func _on_prop_pick_button_button_down():
+	is_prop = true
+	pickRoleSwitchCameras()
+	pass # Replace with function body.
