@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=8 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
 [ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
+[ext_resource type="PackedScene" path="res://bulletsBar.tscn" id="4_jxt5d"]
+[ext_resource type="PackedScene" uid="uid://bx2j74nf3c5t4" path="res://healthBar.tscn" id="4_qexyy"]
+[ext_resource type="Script" path="res://healthBar.gd" id="6_flnys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jk6w4"]
 size = Vector3(1, 2.5125, 1)
@@ -23,8 +26,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958
 [node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569355, -0.57873, -0.863129)
 
+[node name="BulletsBar" parent="HunterCamera" instance=ExtResource("4_jxt5d")]
+
 [node name="PropCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
 
 [node name="propSelector" type="RayCast3D" parent="PropCamera"]
 transform = Transform3D(10, 0, 0, 0, -3.4202, -9.39693, 0, 9.39693, -3.4202, -0.00268841, 0.28965, -4.88209)
+
+[node name="HealthBar" parent="PropCamera" instance=ExtResource("4_qexyy")]
+script = ExtResource("6_flnys")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx2j74nf3c5t4"]
+
+[ext_resource type="Texture2D" uid="uid://ckxfs0su11hi8" path="res://images/heart.png" id="1_86d3a"]
+[ext_resource type="Script" path="res://NoLives.gd" id="2_y3750"]
+
+[node name="HealthBar" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 390.0
+offset_bottom = 146.0
+
+[node name="Heart" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(71, 19)
+scale = Vector2(0.10375, 0.0897833)
+texture = ExtResource("1_86d3a")
+
+[node name="NoLives" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_y3750")

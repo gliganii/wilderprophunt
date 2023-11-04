@@ -13,8 +13,8 @@ var bullet = load("res://weapons/bullet.tscn")
 var camera
 @export var is_prop = false
 
-var health = 100
-var bullets = 20
+@export var health = 100
+@export var bullets = 20
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
