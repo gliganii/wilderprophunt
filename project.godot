@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="res://map1.tscn"
 
+[autoload]
+
+PlayerManager="*res://playerManager.gd"
+MultiplayerController="*res://multiplayerController.gd"
+
 [dotnet]
 
 project/assembly_name="wilderprophunt"

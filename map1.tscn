@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=5 format=3 uid="uid://clktsyynpmy2x"]
 
-[ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
+[ext_resource type="PackedScene" uid="uid://bppm0t744wq0v" path="res://player.tscn" id="1_47dnf"]
+[ext_resource type="Script" path="res://mapManager.gd" id="1_gkomd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(100, 0.5, 100)
@@ -10,6 +11,8 @@ size = Vector3(100, 0.5, 100)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000495434, 0, 0)
+script = ExtResource("1_gkomd")
+PlayerScene = ExtResource("1_47dnf")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -24,4 +27,10 @@ mesh = SubResource("BoxMesh_id3w7")
 transform = Transform3D(-0.111678, -0.753827, 0.647513, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878584, -0.069108, 5.54773, 2.63313, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_47dnf")]
+[node name="SpawnLocation" type="Node3D" parent="."]
+
+[node name="0" type="Node3D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9225, 0, 32.3377)
+
+[node name="1" type="Node3D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6059, 0, -17.3918)

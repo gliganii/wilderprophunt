@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi5enshdbebgm"]
+[gd_scene load_steps=5 format=3 uid="uid://bfidyqus0ek38"]
 
 [ext_resource type="Script" path="res://mainMenu.gd" id="1_jegxk"]
 [ext_resource type="Script" path="res://Control.gd" id="1_r5c77"]
@@ -93,4 +93,5 @@ size_flags_vertical = 4
 text = "Exit Game"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="button_down" from="VBoxContainer/Find Game" to="." method="_on_find_game_button_down"]
 [connection signal="pressed" from="VBoxContainer/ExitGameButton" to="." method="_on_exit_game_pressed"]
