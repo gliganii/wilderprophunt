@@ -111,7 +111,7 @@ script = ExtResource("11_piuxo")
 health = 70
 
 [node name="city_hall" parent="." instance=ExtResource("12_gvqkw")]
-transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 67.3423, 0.196651, -104.179)
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 67.3423, 0.731598, -104.179)
 collision_mask = 11
 
 [node name="runway" parent="." instance=ExtResource("13_04qio")]

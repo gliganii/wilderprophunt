@@ -43,7 +43,7 @@ properties/2/sync = false
 properties/2/watch = false
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 21
+collision_mask = 29
 script = ExtResource("1_hny0h")
 
 [node name="PickControl" type="Control" parent="."]
