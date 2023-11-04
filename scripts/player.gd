@@ -10,6 +10,8 @@ const MOUSE_SENSITIVITY = 0.002
 @onready var gun_barrel = $HunterCamera/gun/barrel
 @onready var prop_selector = $PropCamera/propSelector
 var bullet = load("res://weapons/bullet.tscn")
+var walk_sound = preload("res://sounds/interactions/Walking.mp3")
+var taunt = preload("res://sounds/taunts/Roxen_Mash.mp3")
 var camera
 @export var is_prop = false
 @export var health = 100
@@ -41,6 +43,11 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("sprint") and is_on_floor():
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
+		
+	if Input.is_action_pressed("taunt"):
+		if !$AudioStreamPlayer3D.is_playing():
+			$AudioStreamPlayer3D.stream = taunt
+			$AudioStreamPlayer3D.play()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -49,6 +56,9 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
+		if !$AudioStreamPlayer3D.is_playing():
+			$AudioStreamPlayer3D.stream = walk_sound
+			$AudioStreamPlayer3D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)

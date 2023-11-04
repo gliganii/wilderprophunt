@@ -13,15 +13,17 @@
 [ext_resource type="Script" path="res://scripts/prop.gd" id="11_piuxo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
-size = Vector3(100, 0.520889, 100)
+size = Vector3(1000, 0.552, 1000)
 
 [sub_resource type="BoxMesh" id="BoxMesh_id3w7"]
-size = Vector3(100, 0.5, 100)
+size = Vector3(1000, 0.5, 1000)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000495434, 0, 0)
 
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_epruw")
@@ -31,61 +33,63 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00444496, 0)
 mesh = SubResource("BoxMesh_id3w7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.111678, -0.753827, 0.647512, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878582, -0.0691078, -0.530609, 22.1521, 3.68558)
+transform = Transform3D(-0.111678, -0.753827, 0.647512, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878582, -0.0691078, 7.81193, 13.1296, 3.68558)
+light_energy = 0.126
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_47dnf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0369, 0)
-is_prop = true
+collision_mask = 13
 
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
+collision_mask = 13
 mass = 0.01
 
 [node name="office_chair" parent="." groups=["props"] instance=ExtResource("3_t3yxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, 2.31008)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 
 [node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7995, 0.25, -26.3687)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="horse" parent="." groups=["props"] instance=ExtResource("5_xp1fl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8472, 0.25, 11.274)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="soccer_ball" parent="." groups=["props"] instance=ExtResource("6_5d7dt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3299, 0.710637, 5.78652)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="chibi_anime" parent="." groups=["props"] instance=ExtResource("7_3rj65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2605, 0.25, -4.97206)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="shoes" parent="." groups=["props"] instance=ExtResource("8_1usow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.122, 0.27119, 5.83098)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="mug" parent="." groups=["props"] instance=ExtResource("9_p7wwi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7171, 0.277244, -1.48441)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 mass = 0.01
 
 [node name="skeleton" parent="." groups=["props"] instance=ExtResource("10_8fj86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69314, 0.260445, 24.8506)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 13
 script = ExtResource("11_piuxo")
 health = 70
