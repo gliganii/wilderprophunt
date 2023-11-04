@@ -86,11 +86,11 @@ func _input(event):
 			var character = prop.get_child(0).duplicate()
 			var collisionShape = prop.get_child(1).duplicate()
 			
-			$model.remove_child($model.get_child(0))
+			for child in $model.get_children():
+				child.free()
 			$collisionShape.replace_by(collisionShape)
 			$model.replace_by(character)
 			
-			$model.scale = prop.scale
-			$collisionShape.scale = prop.scale
-			
+			$model.scale = character.scale * prop.scale
+			$collisionShape.scale = collisionShape.scale * prop.scale
 			health = prop.health

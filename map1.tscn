@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=12 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
 [ext_resource type="PackedScene" uid="uid://w1js8rnwvgkn" path="res://props/office_chair.tscn" id="3_t3yxm"]
+[ext_resource type="PackedScene" uid="uid://c6qphob38yump" path="res://props/airplane/airplane.tscn" id="4_j1468"]
+[ext_resource type="PackedScene" uid="uid://u4lwrniscq4k" path="res://props/horse/horse.tscn" id="5_xp1fl"]
+[ext_resource type="PackedScene" uid="uid://d0htcgkbvhi55" path="res://props/soccer_ball/soccer_ball.tscn" id="6_5d7dt"]
+[ext_resource type="PackedScene" uid="uid://be0c4acsxy555" path="res://props/chibi_anime/chibi_anime.tscn" id="7_3rj65"]
+[ext_resource type="PackedScene" uid="uid://djr808ebxwod7" path="res://props/shoes/shoes.tscn" id="8_1usow"]
+[ext_resource type="PackedScene" uid="uid://oeor6locdngk" path="res://props/mug/mug.tscn" id="9_p7wwi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(100, 0.5, 100)
@@ -35,3 +41,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
 
 [node name="office_chair" parent="." groups=["props"] instance=ExtResource("3_t3yxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, -14.8365)
+
+[node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7995, 0.25, -26.3687)
+
+[node name="horse" parent="." groups=["props"] instance=ExtResource("5_xp1fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8472, 0.25, -5.73461)
+
+[node name="soccer_ball" parent="." groups=["props"] instance=ExtResource("6_5d7dt")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -27.3299, 0.710637, -8.26949)
+
+[node name="chibi_anime" parent="." groups=["props"] instance=ExtResource("7_3rj65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.809, 0.25, -4.97206)
+
+[node name="shoes" parent="." groups=["props"] instance=ExtResource("8_1usow")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -17.122, 0.25, 5.83098)
+
+[node name="mug" parent="." groups=["props"] instance=ExtResource("9_p7wwi")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -30.3616, 0.25, -1.48441)

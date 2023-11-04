@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://u4lwrniscq4k"]
+
+[ext_resource type="Script" path="res://props/horse/horse.gd" id="1_8hjyu"]
+[ext_resource type="PackedScene" uid="uid://i5dx7vwirlr" path="res://art/horse.glb" id="1_sahng"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_euat2"]
+size = Vector3(1.16972, 4.02431, 4.95963)
+
+[node name="horse" type="StaticBody3D"]
+script = ExtResource("1_8hjyu")
+
+[node name="model" parent="." instance=ExtResource("1_sahng")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.397705, 0, -1)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.725231)
+shape = SubResource("BoxShape3D_euat2")
