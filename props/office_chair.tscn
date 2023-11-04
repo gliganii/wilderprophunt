@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://w1js8rnwvgkn"]
+
+[ext_resource type="Script" path="res://props/office_chair.gd" id="1_is5ut"]
+[ext_resource type="PackedScene" uid="uid://c017pt67egbwl" path="res://art/office_chair.glb" id="1_mnmfk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bon44"]
+size = Vector3(1.28626, 1.39407, 1.16789)
+
+[node name="office_chair" type="StaticBody3D"]
+script = ExtResource("1_is5ut")
+
+[node name="model" parent="." instance=ExtResource("1_mnmfk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0292721, 0.702652, 0)
+shape = SubResource("BoxShape3D_bon44")

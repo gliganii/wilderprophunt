@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 10
@@ -12,14 +11,14 @@ const MOUSE_SENSITIVITY = 0.002
 @onready var prop_selector = $PropCamera/propSelector
 var bullet = load("res://weapons/bullet.tscn")
 var camera
-@export var isProp = false
+@export var is_prop = false
 
 var health = 100
 var bullets = 20
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if isProp == true:
+	if is_prop == true:
 		remove_child($HunterCamera)
 		camera = $PropCamera
 		add_to_group("hunters")
@@ -80,7 +79,7 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(40), deg_to_rad(60))
 
-	if event.is_action_pressed("select_prop") and isProp == true:
+	if event.is_action_pressed("select_prop") and is_prop == true:
 		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
 			var prop = prop_selector.get_collider()
 			
