@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bghqliqi8bryx"]
+
+[ext_resource type="Script" path="res://props/sofa.gd" id="1_4c82f"]
+[ext_resource type="PackedScene" uid="uid://chl3m1q3u650g" path="res://art/sofa.glb" id="1_xav67"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1beku"]
+size = Vector3(2.71146, 0.913362, 1.02804)
+
+[node name="prop" type="StaticBody3D"]
+script = ExtResource("1_4c82f")
+
+[node name="model" parent="." instance=ExtResource("1_xav67")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24913, 0.0390233)
+shape = SubResource("BoxShape3D_1beku")

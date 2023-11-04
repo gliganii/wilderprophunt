@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_56qix"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_woew0"]
+uv2_padding = 6.26
 radius = 0.05
 height = 0.25
 
