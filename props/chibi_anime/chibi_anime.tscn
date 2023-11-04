@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://be0c4acsxy555"]
+
+[ext_resource type="Script" path="res://props/chibi_anime/chibi_anime.gd" id="1_rh02m"]
+[ext_resource type="PackedScene" uid="uid://dwoxl2aqt88y2" path="res://art/chibi_anime.glb" id="1_tvtc0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nprii"]
+height = 1.68255
+
+[node name="chibi_anime" type="RigidBody3D"]
+script = ExtResource("1_rh02m")
+
+[node name="model" parent="." instance=ExtResource("1_tvtc0")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847729, 0)
+shape = SubResource("CapsuleShape3D_nprii")

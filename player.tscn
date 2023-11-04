@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=10 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
@@ -43,6 +43,7 @@ properties/2/sync = false
 properties/2/watch = false
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 29
 script = ExtResource("1_hny0h")
 
 [node name="PickControl" type="Control" parent="."]
@@ -95,7 +96,8 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
 
 [node name="propSelector" type="RayCast3D" parent="PropCamera"]
-transform = Transform3D(10, 0, 0, 0, -3.4202, -9.39693, 0, 9.39693, -3.4202, -0.00268841, 0.28965, -4.88209)
+transform = Transform3D(100, 0, 0, 0, -3.4202, -93.9693, 0, 9.39693, -34.202, -0.00268841, 0.28965, -4.88209)
+collision_mask = 2
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath(".")
@@ -104,6 +106,9 @@ script = ExtResource("4_52aqd")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_wcnbm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35598, 0)
 
 [connection signal="button_down" from="PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
 [connection signal="button_down" from="PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]

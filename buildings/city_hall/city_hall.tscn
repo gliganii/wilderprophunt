@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpypjh7roga8o"]
+
+[ext_resource type="PackedScene" uid="uid://caw4lrp338dcy" path="res://buildings/city_hall/city_hall.glb" id="1_krxts"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxkhi"]
+size = Vector3(11.3077, 2.32449, 24.7241)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3qe5"]
+size = Vector3(160.139, 2.03593, 90.132)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ld3ij"]
+size = Vector3(156.085, 55.0124, 84.4598)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2i7kl"]
+size = Vector3(19.7799, 90.3885, 19.4803)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fway"]
+size = Vector3(164.416, 52.9209, 1)
+
+[node name="city_hall" type="StaticBody3D"]
+collision_layer = 16
+
+[node name="city_hall" parent="." instance=ExtResource("1_krxts")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.3396, -0.462167, 0)
+shape = SubResource("BoxShape3D_jxkhi")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.8619, -0.584754, 0)
+shape = SubResource("BoxShape3D_q3qe5")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 13.6273, 0)
+shape = SubResource("BoxShape3D_ld3ij")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 38.4323, 22.3932, 0)
+shape = SubResource("BoxShape3D_2i7kl")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.297545, 0.40183, 0, -0.40183, 0.297545, 0, 34.4319, 10.4167)
+shape = SubResource("BoxShape3D_5fway")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -0.295838, 0.403088, 0, -0.403088, -0.295838, 0, 33.8022, -10.7596)
+shape = SubResource("BoxShape3D_5fway")

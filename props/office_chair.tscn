@@ -6,7 +6,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bon44"]
 size = Vector3(1.28626, 1.39407, 1.16789)
 
-[node name="office_chair" type="StaticBody3D"]
+[node name="office_chair" type="RigidBody3D"]
+mass = 0.01
 script = ExtResource("1_is5ut")
 
 [node name="model" parent="." instance=ExtResource("1_mnmfk")]

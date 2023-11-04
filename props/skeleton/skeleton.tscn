@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://5jbfccm2sdwt"]
+
+[ext_resource type="PackedScene" uid="uid://rjxakqsvveb4" path="res://props/skeleton/human_skeleton_high_detailed.glb" id="1_4emso"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fvjpt"]
+radius = 0.176739
+height = 1.3546
+
+[node name="skeleton" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_4emso")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.2868, 0.0172129)
+shape = SubResource("CapsuleShape3D_fvjpt")

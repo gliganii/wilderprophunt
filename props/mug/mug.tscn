@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://oeor6locdngk"]
+
+[ext_resource type="Script" path="res://props/mug/mug.gd" id="1_u8ne0"]
+[ext_resource type="PackedScene" uid="uid://2pbmhy5tuqgq" path="res://art/mug.glb" id="1_yk0vc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_63alv"]
+height = 2.09026
+radius = 1.00115
+
+[node name="mug" type="RigidBody3D"]
+script = ExtResource("1_u8ne0")
+
+[node name="model" parent="." instance=ExtResource("1_yk0vc")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.515212, 0)
+shape = SubResource("CylinderShape3D_63alv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
