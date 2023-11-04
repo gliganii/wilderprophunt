@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=17 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="PackedScene" uid="uid://bi1hkq1rk41ex" path="res://player.tscn" id="1_47dnf"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://oeor6locdngk" path="res://props/mug/mug.tscn" id="9_p7wwi"]
 [ext_resource type="PackedScene" uid="uid://5jbfccm2sdwt" path="res://props/skeleton/skeleton.tscn" id="10_8fj86"]
 [ext_resource type="Script" path="res://scripts/prop.gd" id="11_piuxo"]
+[ext_resource type="PackedScene" uid="uid://dpypjh7roga8o" path="res://buildings/city_hall/city_hall.tscn" id="12_gvqkw"]
+[ext_resource type="PackedScene" uid="uid://bobofkyncnqib" path="res://buildings/runway/runway.tscn" id="13_04qio"]
+[ext_resource type="PackedScene" uid="uid://d3judlxinxtgc" path="res://buildings/runway_with_hangar/runway_with_hangar.tscn" id="14_a5amd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(1000, 0.552, 1000)
@@ -32,14 +35,19 @@ shape = SubResource("BoxShape3D_epruw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00444496, 0)
 mesh = SubResource("BoxMesh_id3w7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.111678, -0.753827, 0.647512, 0.00479396, 0.651172, 0.758915, -0.993733, 0.0878582, -0.0691078, 7.81193, 13.1296, 3.68558)
-light_energy = 0.126
+[node name="DirectionalLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.604611, -0.752402, 0.261414, -0.0398455, 0.299214, 0.953354, -0.795524, -0.586824, 0.150928, 67.3381, 56.8582, -73.2931)
+light_energy = 16.0
+light_size = 0.076
+light_specular = 0.0
 shadow_enabled = true
+distance_fade_begin = 172.66
+distance_fade_shadow = 630.4
+omni_range = 4096.0
 
 [node name="Player" parent="." instance=ExtResource("1_47dnf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0369, 0)
-collision_mask = 13
+collision_mask = 29
 
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2548, 1.22269, -33.4796)
@@ -52,7 +60,7 @@ collision_layer = 2
 collision_mask = 13
 
 [node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7995, 0.25, -26.3687)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.88935, 0.25, -106.011)
 collision_layer = 2
 collision_mask = 13
 mass = 0.01
@@ -93,3 +101,16 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("11_piuxo")
 health = 70
+
+[node name="city_hall" parent="." instance=ExtResource("12_gvqkw")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 67.3423, 1.25253, -104.179)
+collision_mask = 11
+
+[node name="runway" parent="." instance=ExtResource("13_04qio")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.73676, 0.275879, -67.369)
+
+[node name="runway_with_hangar" parent="." instance=ExtResource("14_a5amd")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -264.881, 0.019042, 100.678)
+
+[node name="runway_with_hangar2" parent="." instance=ExtResource("14_a5amd")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -265.29, -0.00925446, -13.8595)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bobofkyncnqib"]
+
+[ext_resource type="PackedScene" uid="uid://bbcn8bdbjnvak" path="res://buildings/runway/runway.glb" id="1_gcbi6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3l3n"]
+size = Vector3(124.427, 0.168022, 7336.32)
+
+[node name="runway" type="StaticBody3D"]
+
+[node name="runway" parent="." instance=ExtResource("1_gcbi6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207, -0.0754472, -5.51752)
+shape = SubResource("BoxShape3D_a3l3n")
