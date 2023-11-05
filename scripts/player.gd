@@ -24,14 +24,11 @@ var camera
 @export var is_prop = false
 @export var health = 100
 @export var bullets = 20
-var choseSides = false
-@export var playerModel: Node
 
 func _ready():
 	#setup for before they choose a side
 	$HunterCamera/gun.visible = false
 	$Stats.visible = false
-	$PickWindow.visible = false
 	
 	if is_prop == true:
 		camera = $PropCamera
@@ -44,7 +41,6 @@ func _ready():
 	if player == multiplayer.get_unique_id():
 		camera.current = true
 		$Stats.visible = true
-		$PickWindow.visible = true
 
 func _physics_process(delta):
 	if player == multiplayer.get_unique_id():
@@ -84,7 +80,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
-	if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
+	if input.shooting && !is_prop && bullets > 0: #conditions on shooting
 		$AnimationPlayer.play("weapon_shoot_opti")
 		var instance = preload("res://weapons/bullet.tscn").instantiate()
 		instance.player = self
@@ -105,7 +101,6 @@ func _physics_process(delta):
 		$model.replace_by(character)
 		
 		$model.scale = character.scale * prop.scale
-		playerModel = $model
 		$collisionShape.scale = collisionShape.scale * prop.scale
 		health = prop.health
 	input.changed_prop = false
@@ -149,14 +144,12 @@ func _input(event):
 			
 		
 func pickRoleSwitchCameras():
-	choseSides = true
 	if is_prop == true:
 		$HunterCamera/gun.visible = false
 		$Stats/BulletControl.visible = false
 		$PropCamera/propSelector.enabled = true
 		camera = $PropCamera
 	else:
-		print("Hunter picked!")
 		$HunterCamera/gun.visible = true
 		$Stats/BulletControl.visible = true
 		camera = $HunterCamera
