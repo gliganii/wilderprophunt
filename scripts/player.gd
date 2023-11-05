@@ -24,14 +24,18 @@ var camera
 @export var is_prop = false
 @export var health = 100
 @export var bullets = 20
+var choseSides = false
+@export var playerModel: Node
 
 func _ready():
+	#setup for before they choose a side
+	$HunterCamera/gun.visible = false
+	$Stats/BulletControl.visible = false
+	
 	if is_prop == true:
-#		remove_child($HunterCamera)
 		camera = $PropCamera
 		add_to_group("hunters")
 	else:
-#		remove_child($PropCamera)
 		camera = $HunterCamera
 		add_to_group("propPlayers")
 	
@@ -39,8 +43,8 @@ func _ready():
 		camera.current = true
 
 func _physics_process(delta):
-	$healthBar.value = health
-	$bulletBar.value = bullets
+	$Stats/HealthControl/healthBar.value = health
+	$Stats/BulletControl/bulletBar.value = bullets
 	
 	var speed_multiplier = 1.0
 	
@@ -73,12 +77,27 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
+	# show selectable prop
+	if is_prop:
+		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+			$Stats/propSelectableLabel.visible = true
+			$Stats/propSelectableLabel.text = "(E) Morph into " + human_case(prop_selector.get_collider().name)
+		else:
+			$Stats/propSelectableLabel.visible = false
 	move_and_slide()
+
+# ignore this please - Object Name Humanizer
+func human_case(input_string: String):
+	input_string = input_string.replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+	var words: PackedStringArray = input_string.split("_")
+	for i in range(words.size()):
+		words[i] = words[i].capitalize()
+	return str(" ".join(words))
 
 		
 func hit(damage):
 	health -= damage
-	if health < 0:
+	if health <= 0:
 		#TODO: show death screen
 		queue_free()
 
@@ -86,10 +105,10 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	if   event.is_action_pressed("click"):
+	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else: if input.shooting:
+		else: if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
 			input.shooting = false
 			$AnimationPlayer.play("weapon_shoot_opti")
 			var instance = preload("res://weapons/bullet.tscn").instantiate()
@@ -97,6 +116,7 @@ func _input(event):
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
+			bullets -= 1
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
@@ -116,27 +136,32 @@ func _input(event):
 			$model.replace_by(character)
 			
 			$model.scale = character.scale * prop.scale
+			playerModel = $model
 			$collisionShape.scale = collisionShape.scale * prop.scale
 			health = prop.health
 			
 		
 func pickRoleSwitchCameras():
+	choseSides = true
 	if is_prop == true:
 		print("Prop picked!")
+		$HunterCamera/gun.visible = false
+		$Stats/BulletControl.visible = false
 		camera = $PropCamera
 	else:
 		print("Hunter picked!")
+		$HunterCamera/gun.visible = true
+		$Stats/BulletControl.visible = true
 		camera = $HunterCamera
 	
 	if player == multiplayer.get_unique_id():
 		camera.current = true
-	remove_child($PickControl)
+	remove_child($PickWindow)
 
 func _on_hunter_pick_button_button_down():
 	is_prop = false
 	pickRoleSwitchCameras()
 	pass # Replace with function body.
-
 
 func _on_prop_pick_button_button_down():
 	is_prop = true

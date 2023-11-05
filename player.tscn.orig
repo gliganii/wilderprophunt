@@ -1,0 +1,115 @@
+<<<<<<< HEAD
+[gd_scene load_steps=8 format=3 uid="uid://bi1hkq1rk41ex"]
+=======
+[gd_scene load_steps=7 format=3 uid="uid://bi1hkq1rk41ex"]
+>>>>>>> origin/master
+
+[ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
+[ext_resource type="PackedScene" uid="uid://dlnohswdy866h" path="res://bulletCount.tscn" id="2_bpimo"]
+[ext_resource type="PackedScene" uid="uid://cow6jxa0rd1om" path="res://healthBar.tscn" id="3_tv7wt"]
+[ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
+[ext_resource type="Script" path="res://MultiplayerSynchronizer.gd" id="4_52aqd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jk6w4"]
+size = Vector3(1, 2.5125, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qvpya"]
+properties/0/path = NodePath("../HunterCamera:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("..:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("../PropCamera:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:direction")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wcnbm"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:player")
+properties/2/spawn = true
+properties/2/sync = false
+properties/2/watch = false
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hny0h")
+
+<<<<<<< HEAD
+[node name="PickControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HunterPickButton" type="Button" parent="PickControl"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 603.0
+offset_right = 74.0
+offset_bottom = 633.0
+text = "Hunter
+"
+
+[node name="PropPickButton" type="Button" parent="PickControl"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 603.0
+offset_right = 145.0
+offset_bottom = 634.0
+text = "Prop"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://weapons/bullet.tscn")
+spawn_path = NodePath("../HunterCamera/gun")
+spawn_limit = 3
+=======
+[node name="bulletBar" parent="." instance=ExtResource("2_bpimo")]
+position = Vector2(1020, 8)
+
+[node name="healthBar" parent="." instance=ExtResource("3_tv7wt")]
+>>>>>>> origin/master
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2388, 0)
+shape = SubResource("BoxShape3D_jk6w4")
+
+[node name="model" parent="." instance=ExtResource("1_2fvoi")]
+transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0, 0)
+
+[node name="HunterCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958)
+
+[node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569355, -0.57873, -0.863129)
+
+[node name="PropCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
+
+[node name="propSelector" type="RayCast3D" parent="PropCamera"]
+transform = Transform3D(10, 0, 0, 0, -3.4202, -9.39693, 0, 9.39693, -3.4202, -0.00268841, 0.28965, -4.88209)
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_qvpya")
+script = ExtResource("4_52aqd")
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wcnbm")
+
+[connection signal="button_down" from="PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
+[connection signal="button_down" from="PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]

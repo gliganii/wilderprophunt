@@ -245,45 +245,58 @@ properties/2/watch = false
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 29
 script = ExtResource("1_hny0h")
+metadata/_edit_horizontal_guides_ = [94.0, 124.0]
+metadata/_edit_vertical_guides_ = [14.0]
 
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HunterCamera/gun")
 libraries = {
 "": SubResource("AnimationLibrary_q6q3m")
 }
 
-[node name="PickControl" type="Control" parent="."]
+[node name="HealthControl" type="Control" parent="Stats"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HunterPickButton" type="Button" parent="PickControl"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 603.0
-offset_right = 74.0
-offset_bottom = 633.0
-text = "Hunter
-"
+[node name="healthBar" parent="Stats/HealthControl" instance=ExtResource("3_tv7wt")]
 
-[node name="PropPickButton" type="Button" parent="PickControl"]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 603.0
-offset_right = 145.0
-offset_bottom = 634.0
-text = "Prop"
+[node name="BulletControl" type="Control" parent="Stats"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+
+[node name="bulletBar" parent="Stats/BulletControl" instance=ExtResource("2_bpimo")]
+position = Vector2(-137, 13)
+
+[node name="propSelectableLabel" type="Label" parent="Stats"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -33.0
+offset_right = 238.0
+offset_bottom = -7.0
+grow_vertical = 0
+text = "Press (E) to Morph into object"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://weapons/bullet.tscn")
 spawn_path = NodePath("../HunterCamera/gun")
 spawn_limit = 3
-
-[node name="bulletBar" parent="." instance=ExtResource("2_bpimo")]
-position = Vector2(1020, 8)
-
-[node name="healthBar" parent="." instance=ExtResource("3_tv7wt")]
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.239, 0)
@@ -294,6 +307,7 @@ transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 
 
 [node name="HunterCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958)
+current = true
 
 [node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569, -0.579, -0.863)
@@ -302,8 +316,9 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
 
 [node name="propSelector" type="RayCast3D" parent="PropCamera"]
-transform = Transform3D(100, 0, 0, 0, -3.4202, -93.9693, 0, 9.39693, -34.202, -0.00268841, 0.28965, -4.88209)
+transform = Transform3D(100, 0, 0, 0, -1.73648, -98.4808, 0, 9.84808, -17.3648, -0.003, 0, -4.882)
 collision_mask = 2
+debug_shape_thickness = 1
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath(".")
@@ -316,5 +331,68 @@ replication_config = SubResource("SceneReplicationConfig_wcnbm")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35598, 0)
 
-[connection signal="button_down" from="PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
-[connection signal="button_down" from="PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]
+[node name="PickWindow" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(450, 200)
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="PickControl" type="Control" parent="PickWindow"]
+layout_mode = 3
+anchor_left = 0.00186806
+anchor_right = 0.389
+anchor_bottom = 0.344
+offset_left = -0.840625
+offset_right = -0.81665
+offset_bottom = 1.088
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 36.0
+text = "Pick a side:"
+
+[node name="HunterDescLabel2" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 127.0
+offset_right = 435.0
+offset_bottom = 179.0
+text = "- They are the hunted. They must hide and
+morph into props in order to survive."
+
+[node name="HunterDescLabel" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 65.0
+offset_right = 434.0
+offset_bottom = 117.0
+text = "- They hunt prop players. Hitting actual props
+will damage them."
+
+[node name="HunterPickButton" type="Button" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 62.0
+offset_right = 77.0
+offset_bottom = 93.0
+text = "Hunter
+"
+
+[node name="PropPickButton" type="Button" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 125.0
+offset_right = 76.0
+offset_bottom = 156.0
+text = "Prop"
+
+[connection signal="button_down" from="PickWindow/PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
+[connection signal="button_down" from="PickWindow/PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]
