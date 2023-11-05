@@ -60,6 +60,7 @@ func _physics_process(delta):
 		if !$AudioStreamPlayer3D.is_playing():
 			$AudioStreamPlayer3D.stream = taunt
 			$AudioStreamPlayer3D.play()
+			$AnimationPlayer.play("inspect_weapon_opti")
 
 	var direction = (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 	if direction:
@@ -90,6 +91,7 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else: if input.shooting:
 			input.shooting = false
+			$AnimationPlayer.play("weapon_shoot_opti")
 			var instance = preload("res://weapons/bullet.tscn").instantiate()
 			instance.player = self
 			instance.position = gun_barrel.global_position
