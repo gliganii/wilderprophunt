@@ -24,6 +24,7 @@ var camera
 @export var is_prop = false
 @export var health = 100
 @export var bullets = 20
+var isMorphedIntoProp = false
 
 func _ready():
 	#setup for before they choose a side
@@ -55,11 +56,15 @@ func _physics_process(delta):
 	# Handle Jump.
 	if input.jumping and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
+		if !isMorphedIntoProp:
+			$model/AnimationPlayer.play("jump")
+			$model/AnimationPlayer.seek(0.7, true)
 	input.jumping = false
 		
 	if input.sprinting and is_on_floor():
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
+		if !isMorphedIntoProp:
+			$model/AnimationPlayer.play("run")
 	
 	input.sprinting = false
 		
@@ -76,6 +81,10 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
+		
+		if !isMorphedIntoProp:
+			if $model/AnimationPlayer.current_animation != "walk" && $model/AnimationPlayer.current_animation != "run":
+				$model/AnimationPlayer.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
@@ -91,6 +100,7 @@ func _physics_process(delta):
 	input.shooting = false
 	
 	if input.changed_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+		isMorphedIntoProp = true
 		var prop = prop_selector.get_collider()
 		var character = prop.get_child(0).duplicate()
 		var collisionShape = prop.get_child(1).duplicate()
@@ -153,7 +163,9 @@ func pickRoleSwitchCameras():
 		$HunterCamera/gun.visible = true
 		$Stats/BulletControl.visible = true
 		camera = $HunterCamera
-	
+		if player == multiplayer.get_unique_id():
+			$model.visible = false
+			
 	if player == multiplayer.get_unique_id():
 		camera.current = true
 	remove_child($PickWindow)
