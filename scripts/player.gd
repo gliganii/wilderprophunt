@@ -18,14 +18,17 @@ const MOUSE_SENSITIVITY = 0.002
 @onready var gun_barrel = $HunterCamera/gun/barrel
 @onready var prop_selector = $PropCamera/propSelector
 var bullet = load("res://weapons/bullet.tscn")
-var walk_sound = preload("res://sounds/interactions/Walking.mp3")
+var walk_sound = preload("res://sounds/interactions/Walking2pasi.mp3")
 var taunt = preload("res://sounds/taunts/Roxen_Mash.mp3")
 var camera
 @export var is_prop = false
 @export var health = 100
-@export var bullets = 20
+@export var bullets = 0 #init as 0 for prop
+
 var choseSides = false
-@export var playerModel: Node
+var isMorphedIntoProp = false
+
+@export var playerModel: Node # not working
 
 func _ready():
 	#setup for before they choose a side
@@ -59,6 +62,8 @@ func _physics_process(delta):
 		
 	if input.sprinting and is_on_floor():
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
+		if !isMorphedIntoProp:
+			$model/AnimationPlayer.play("Armature_001|mixamo_com|Layer0")
 	
 	input.sprinting = false
 		
@@ -75,6 +80,15 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
+		
+		# if player is not walking or sprinting then walk
+		if !isMorphedIntoProp:
+			if $model/AnimationPlayer.current_animation != "Armature_002|mixamo_com|Layer0" && $model/AnimationPlayer.current_animation != "Armature_001|mixamo_com|Layer0":
+				$model/AnimationPlayer.play("Armature_002|mixamo_com|Layer0")
+			
+		if !$AudioStreamPlayer3D.is_playing():
+			$AudioStreamPlayer3D.stream = walk_sound
+			$AudioStreamPlayer3D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
@@ -153,8 +167,13 @@ func pickRoleSwitchCameras():
 		camera = $PropCamera
 	else:
 		print("Hunter picked!")
+		bullets = 20
 		$HunterCamera/gun.visible = true
 		$Stats/BulletControl.visible = true
+		$Stats/CrosshairControl.visible = true
+		
+		if player == multiplayer.get_unique_id():
+			$model.visible = false
 		camera = $HunterCamera
 	
 	if player == multiplayer.get_unique_id():
