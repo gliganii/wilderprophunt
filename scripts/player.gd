@@ -24,27 +24,28 @@ var camera
 @export var is_prop = false
 @export var health = 100
 @export var bullets = 20
-var choseSides = false
-@export var playerModel: Node
 
 func _ready():
 	#setup for before they choose a side
 	$HunterCamera/gun.visible = false
-	$Stats/BulletControl.visible = false
+	$Stats.visible = false
 	
 	if is_prop == true:
 		camera = $PropCamera
 		add_to_group("propPlayers")
 	else:
+		$PropCamera/propSelector.enabled = false
 		camera = $HunterCamera
 		add_to_group("hunters")
 	
 	if player == multiplayer.get_unique_id():
 		camera.current = true
+		$Stats.visible = true
 
 func _physics_process(delta):
-	$Stats/HealthControl/healthBar.value = health
-	$Stats/BulletControl/bulletBar.value = bullets
+	if player == multiplayer.get_unique_id():
+		$Stats/HealthControl/healthBar.value = health
+		$Stats/BulletControl/bulletBar.value = bullets
 	
 	var speed_multiplier = 1.0
 	
@@ -79,7 +80,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
-	if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
+	if input.shooting && !is_prop && bullets > 0: #conditions on shooting
 		$AnimationPlayer.play("weapon_shoot_opti")
 		var instance = preload("res://weapons/bullet.tscn").instantiate()
 		instance.player = self
@@ -89,8 +90,7 @@ func _physics_process(delta):
 		bullets -= 1
 	input.shooting = false
 	
-	if input.changed_prop and is_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
-		print(player, " ", is_prop)
+	if input.changed_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
 		var prop = prop_selector.get_collider()
 		var character = prop.get_child(0).duplicate()
 		var collisionShape = prop.get_child(1).duplicate()
@@ -101,7 +101,6 @@ func _physics_process(delta):
 		$model.replace_by(character)
 		
 		$model.scale = character.scale * prop.scale
-		playerModel = $model
 		$collisionShape.scale = collisionShape.scale * prop.scale
 		health = prop.health
 	input.changed_prop = false
@@ -145,14 +144,12 @@ func _input(event):
 			
 		
 func pickRoleSwitchCameras():
-	choseSides = true
 	if is_prop == true:
-		print("Prop picked!")
 		$HunterCamera/gun.visible = false
 		$Stats/BulletControl.visible = false
+		$PropCamera/propSelector.enabled = true
 		camera = $PropCamera
 	else:
-		print("Hunter picked!")
 		$HunterCamera/gun.visible = true
 		$Stats/BulletControl.visible = true
 		camera = $HunterCamera
@@ -164,9 +161,7 @@ func pickRoleSwitchCameras():
 func _on_hunter_pick_button_button_down():
 	is_prop = false
 	pickRoleSwitchCameras()
-	pass # Replace with function body.
 
 func _on_prop_pick_button_button_down():
 	is_prop = true
 	pickRoleSwitchCameras()
-	pass # Replace with function body.
