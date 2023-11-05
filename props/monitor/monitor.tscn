@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://sudubvldfxou"]
+[gd_scene load_steps=5 format=3 uid="uid://sudubvldfxou"]
 
 [ext_resource type="Script" path="res://scripts/prop.gd" id="1_atw18"]
 [ext_resource type="PackedScene" uid="uid://blinqelmro7cj" path="res://props/monitor/old_crt_monitor_model.glb" id="1_e02gj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r6vbb"]
 size = Vector3(0.467954, 0.433214, 0.624573)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a1bkg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:angular_velocity")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:linear_velocity")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [node name="monitor" type="RigidBody3D"]
 mass = 2.0
@@ -26,3 +44,6 @@ distance_fade_begin = 2.0
 distance_fade_length = 5.0
 omni_range = 0.973716
 omni_attenuation = 0.0693481
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a1bkg")

@@ -4,8 +4,6 @@ extends Node3D
 const SPAWN_RANDOM := 5.0
 
 func _ready():
-	print("ready")
-	
 	if not multiplayer.is_server():
 		return
 

@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://w1js8rnwvgkn"]
+[gd_scene load_steps=5 format=3 uid="uid://w1js8rnwvgkn"]
 
 [ext_resource type="Script" path="res://props/office_chair.gd" id="1_is5ut"]
 [ext_resource type="PackedScene" uid="uid://c017pt67egbwl" path="res://art/office_chair.glb" id="1_mnmfk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bon44"]
 size = Vector3(1.28626, 1.39407, 1.16789)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6iquc"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:angular_velocity")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:linear_velocity")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [node name="office_chair" type="RigidBody3D"]
 mass = 0.01
@@ -16,3 +34,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0292721, 0.702652, 0)
 shape = SubResource("BoxShape3D_bon44")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6iquc")

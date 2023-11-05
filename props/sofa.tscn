@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bghqliqi8bryx"]
+[gd_scene load_steps=5 format=3 uid="uid://bghqliqi8bryx"]
 
 [ext_resource type="Script" path="res://props/sofa.gd" id="1_4c82f"]
 [ext_resource type="PackedScene" uid="uid://chl3m1q3u650g" path="res://art/sofa.glb" id="1_xav67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1beku"]
 size = Vector3(2.03417, 0.760086, 1.02804)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg2sh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:angular_velocity")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:linear_velocity")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [node name="prop" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0803697, 0)
@@ -22,3 +40,6 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.63173, 0)
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.16439, 0.0390233)
 shape = SubResource("BoxShape3D_1beku")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qg2sh")
