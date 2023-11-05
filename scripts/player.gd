@@ -147,9 +147,9 @@ func _input(event):
 func pickRoleSwitchCameras():
 	choseSides = true
 	if is_prop == true:
-		print("Prop picked!")
 		$HunterCamera/gun.visible = false
 		$Stats/BulletControl.visible = false
+		$PropCamera/propSelector.enabled = true
 		camera = $PropCamera
 	else:
 		print("Hunter picked!")
