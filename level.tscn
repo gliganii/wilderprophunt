@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkif6s82xlc4m"]
+[gd_scene load_steps=4 format=3 uid="uid://b2bcyd7k2rtfq"]
 
 [ext_resource type="Script" path="res://multiplayer.gd" id="1_3dv0a"]
 
@@ -99,6 +99,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Exit Game"
+
+[node name="TextEdit" type="TextEdit" parent="UI"]
+custom_minimum_size = Vector2(91, 31)
+layout_mode = 2
+offset_left = 631.0
+offset_top = 310.0
+offset_right = 868.0
+offset_bottom = 343.0
+placeholder_text = "Connection IP"
 
 [connection signal="pressed" from="UI/VBoxContainer/Start" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Find Game" to="." method="_on_connect_pressed"]

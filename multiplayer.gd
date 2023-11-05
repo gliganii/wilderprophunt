@@ -21,7 +21,11 @@ func _on_host_pressed():
 	
 func _on_connect_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", PORT)
+	var connection : String = $UI/TextEdit.text
+	if connection == "":
+		OS.alert("Need a remote to connect to")
+		return
+	peer.create_client(connection, PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client.")
 		return
