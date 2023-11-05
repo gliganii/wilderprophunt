@@ -76,7 +76,22 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
 
+	# show selectable prop
+	if is_prop:
+		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+			$Stats/propSelectableLabel.visible = true
+			$Stats/propSelectableLabel.text = "(E) Morph into " + human_case(prop_selector.get_collider().name)
+		else:
+			$Stats/propSelectableLabel.visible = false
 	move_and_slide()
+
+# ignore this please - Object Name Humanizer
+func human_case(input_string: String):
+	input_string = input_string.replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+	var words: PackedStringArray = input_string.split("_")
+	for i in range(words.size()):
+		words[i] = words[i].capitalize()
+	return str(" ".join(words))
 
 		
 func hit(damage):
@@ -89,7 +104,7 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	if   event.is_action_pressed("click"):
+	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else: if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
