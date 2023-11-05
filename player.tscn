@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=18 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cow6jxa0rd1om" path="res://healthBar.tscn" id="3_tv7wt"]
 [ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
 [ext_resource type="Script" path="res://MultiplayerSynchronizer.gd" id="4_52aqd"]
+[ext_resource type="Texture2D" uid="uid://c3qg7ajmk76dp" path="res://images/crosshair.png" id="4_d56js"]
+[ext_resource type="PackedScene" uid="uid://crjhyy4m1r4hd" path="res://anim/ironmodel.glb" id="5_fbfd6"]
 
 [sub_resource type="Animation" id="Animation_845gr"]
 resource_name = "RESET"
@@ -255,11 +257,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../HunterCamera/gun")
-libraries = {
-"": SubResource("AnimationLibrary_q6q3m")
-}
 
 [node name="HealthControl" type="Control" parent="Stats"]
 layout_mode = 3
@@ -293,6 +290,26 @@ offset_bottom = -7.0
 grow_vertical = 0
 text = "Press (E) to Morph into object"
 
+[node name="CrosshairControl" type="Control" parent="Stats"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="Sprite2D" parent="Stats/CrosshairControl"]
+texture = ExtResource("4_d56js")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HunterCamera/gun")
+libraries = {
+"": SubResource("AnimationLibrary_q6q3m")
+}
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://weapons/bullet.tscn")
 spawn_path = NodePath("../HunterCamera/gun")
@@ -302,15 +319,19 @@ spawn_limit = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.239, 0)
 shape = SubResource("BoxShape3D_jk6w4")
 
-[node name="model" parent="." instance=ExtResource("1_2fvoi")]
+[node name="amodel" parent="." instance=ExtResource("1_2fvoi")]
 transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0, 0)
+visible = false
+
+[node name="model" parent="." instance=ExtResource("5_fbfd6")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0.2)
 
 [node name="HunterCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958)
 current = true
 
 [node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569, -0.579, -0.863)
+transform = Transform3D(-1.81e-06, 0, 0.5, 0, 0.5, 0, -0.5, 0, -1.81e-06, 0.569, -0.579, -0.863)
 
 [node name="PropCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
