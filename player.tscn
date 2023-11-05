@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=29 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
@@ -6,6 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cow6jxa0rd1om" path="res://healthBar.tscn" id="3_tv7wt"]
 [ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
 [ext_resource type="Script" path="res://MultiplayerSynchronizer.gd" id="4_52aqd"]
+[ext_resource type="AudioStream" uid="uid://bvggmfo6atdf8" path="res://sounds/taunts/AMODO_BAZOOKA.mp3" id="7_lucmj"]
+[ext_resource type="AudioStream" uid="uid://c670hoinnii3" path="res://sounds/taunts/Based_DoomGuy.mp3" id="8_da7rm"]
+[ext_resource type="AudioStream" uid="uid://ccfpie50eh2ki" path="res://sounds/taunts/urmatoarea_oprire__MA-TA.mp3" id="9_302rb"]
+[ext_resource type="AudioStream" uid="uid://dnymkmtejq58r" path="res://sounds/taunts/DISGUSTANG.mp3" id="9_xmp7l"]
+[ext_resource type="AudioStream" uid="uid://dax1pdmux4x70" path="res://sounds/taunts/Lui_Razvan.mp3" id="10_3mk0w"]
+[ext_resource type="AudioStream" uid="uid://diivoyt5vgekh" path="res://sounds/taunts/Wingardium_Leviosa.mp3" id="10_xf0nk"]
+[ext_resource type="AudioStream" uid="uid://y1l0kjx84pr4" path="res://sounds/taunts/The_Magic_Kurwa.mp3" id="11_ju32o"]
+[ext_resource type="AudioStream" uid="uid://cqfjtrmqal6k0" path="res://sounds/taunts/LET_ME_TELL_YOU_SOMETHING.mp3" id="12_oihh6"]
+[ext_resource type="AudioStream" uid="uid://deyjkjsgvih8t" path="res://sounds/taunts/Maaaai.mp3" id="14_um2xd"]
+[ext_resource type="AudioStream" uid="uid://c7sfcyrcgvb45" path="res://sounds/taunts/Rick_Roll.mp3" id="15_0oyw7"]
+[ext_resource type="AudioStream" uid="uid://vue004m35cvo" path="res://sounds/taunts/Roxen_Mash.mp3" id="16_ykbmu"]
+[ext_resource type="AudioStream" uid="uid://nfs3vvjvsl8b" path="res://sounds/taunts/Shrek_Anthem.mp3" id="17_xb7jw"]
 
 [sub_resource type="Animation" id="Animation_845gr"]
 resource_name = "RESET"
@@ -242,6 +254,34 @@ properties/2/spawn = true
 properties/2/sync = false
 properties/2/watch = false
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jwkwx"]
+resource_local_to_scene = true
+streams_count = 12
+stream_0/stream = ExtResource("7_lucmj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_da7rm")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_xmp7l")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_oihh6")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_3mk0w")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("14_um2xd")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("15_0oyw7")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("16_ykbmu")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("17_xb7jw")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("11_ju32o")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("9_302rb")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("10_xf0nk")
+stream_11/weight = 1.0
+
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 29
 script = ExtResource("1_hny0h")
@@ -394,6 +434,9 @@ offset_top = 125.0
 offset_right = 76.0
 offset_bottom = 156.0
 text = "Prop"
+
+[node name="TauntStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_jwkwx")
 
 [connection signal="button_down" from="PickWindow/PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
 [connection signal="button_down" from="PickWindow/PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]
