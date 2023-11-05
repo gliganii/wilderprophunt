@@ -255,11 +255,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../HunterCamera/gun")
-libraries = {
-"": SubResource("AnimationLibrary_q6q3m")
-}
 
 [node name="HealthControl" type="Control" parent="Stats"]
 layout_mode = 3
@@ -293,6 +288,12 @@ offset_bottom = -7.0
 grow_vertical = 0
 text = "Press (E) to Morph into object"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HunterCamera/gun")
+libraries = {
+"": SubResource("AnimationLibrary_q6q3m")
+}
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://weapons/bullet.tscn")
 spawn_path = NodePath("../HunterCamera/gun")
@@ -310,7 +311,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958
 current = true
 
 [node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569, -0.579, -0.863)
+transform = Transform3D(-1.81e-06, 0, 0.5, 0, 0.5, 0, -0.5, 0, -1.81e-06, 0.569, -0.579, -0.863)
 
 [node name="PropCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)

@@ -34,10 +34,10 @@ func _ready():
 	
 	if is_prop == true:
 		camera = $PropCamera
-		add_to_group("hunters")
+		add_to_group("propPlayers")
 	else:
 		camera = $HunterCamera
-		add_to_group("propPlayers")
+		add_to_group("hunters")
 	
 	if player == multiplayer.get_unique_id():
 		camera.current = true
@@ -57,25 +57,37 @@ func _physics_process(delta):
 		
 	input.jumping = false
 		
-	if Input.is_action_pressed("sprint") and is_on_floor():
+	if input.sprinting and is_on_floor():
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
+	
+	input.sprinting = false
 		
-	if Input.is_action_pressed("taunt"):
-		if !$AudioStreamPlayer3D.is_playing():
-			$AudioStreamPlayer3D.stream = taunt
-			$AudioStreamPlayer3D.play()
-			$AnimationPlayer.play("inspect_weapon_opti")
+	if input.inspecting and !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("inspect_weapon_opti")
+	input.inspecting = false
+	
+	if input.taunting and !$AudioStreamPlayer3D.is_playing():
+		$AudioStreamPlayer3D.stream = taunt
+		$AudioStreamPlayer3D.play()
+	input.taunting = false
 
 	var direction = (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
-		if !$AudioStreamPlayer3D.is_playing():
-			$AudioStreamPlayer3D.stream = walk_sound
-			$AudioStreamPlayer3D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
+
+	if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
+		$AnimationPlayer.play("weapon_shoot_opti")
+		var instance = preload("res://weapons/bullet.tscn").instantiate()
+		instance.player = self
+		instance.position = gun_barrel.global_position
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+		bullets -= 1
+	input.shooting = false
 
 	# show selectable prop
 	if is_prop:
@@ -108,15 +120,6 @@ func _input(event):
 	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else: if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
-			input.shooting = false
-			$AnimationPlayer.play("weapon_shoot_opti")
-			var instance = preload("res://weapons/bullet.tscn").instantiate()
-			instance.player = self
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().add_child(instance)
-			bullets -= 1
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
