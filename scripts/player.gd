@@ -37,10 +37,10 @@ func _ready():
 	
 	if is_prop == true:
 		camera = $PropCamera
-		add_to_group("hunters")
+		add_to_group("propPlayers")
 	else:
 		camera = $HunterCamera
-		add_to_group("propPlayers")
+		add_to_group("hunters")
 	
 	if player == multiplayer.get_unique_id():
 		camera.current = true
@@ -60,16 +60,21 @@ func _physics_process(delta):
 		
 	input.jumping = false
 		
-	if Input.is_action_pressed("sprint") and is_on_floor():
+	if input.sprinting and is_on_floor():
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
 		if !isMorphedIntoProp:
 			$model/AnimationPlayer.play("Armature_001|mixamo_com|Layer0")
+	
+	input.sprinting = false
 		
-	if Input.is_action_pressed("taunt"):
-		if !$AudioStreamPlayer3D.is_playing():
-			$AudioStreamPlayer3D.stream = taunt
-			$AudioStreamPlayer3D.play()
-			$AnimationPlayer.play("inspect_weapon_opti")
+	if input.inspecting and !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("inspect_weapon_opti")
+	input.inspecting = false
+	
+	if input.taunting and !$AudioStreamPlayer3D.is_playing():
+		$AudioStreamPlayer3D.stream = taunt
+		$AudioStreamPlayer3D.play()
+	input.taunting = false
 
 	var direction = (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 	if direction:
@@ -87,6 +92,33 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * speed_multiplier)
 		velocity.z = move_toward(velocity.z, 0, SPEED * speed_multiplier)
+
+	if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
+		$AnimationPlayer.play("weapon_shoot_opti")
+		var instance = preload("res://weapons/bullet.tscn").instantiate()
+		instance.player = self
+		instance.position = gun_barrel.global_position
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+		bullets -= 1
+	input.shooting = false
+	
+	if input.changed_prop and is_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+		print(player, " ", is_prop)
+		var prop = prop_selector.get_collider()
+		var character = prop.get_child(0).duplicate()
+		var collisionShape = prop.get_child(1).duplicate()
+		
+		for child in $model.get_children():
+			child.free()
+		$collisionShape.replace_by(collisionShape)
+		$model.replace_by(character)
+		
+		$model.scale = character.scale * prop.scale
+		playerModel = $model
+		$collisionShape.scale = collisionShape.scale * prop.scale
+		health = prop.health
+	input.changed_prop = false
 
 	# show selectable prop
 	if is_prop:
@@ -119,38 +151,12 @@ func _input(event):
 	if event.is_action_pressed("click"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else: if input.shooting && !is_prop && choseSides && bullets > 0: #conditions on shooting
-			input.shooting = false
-			$AnimationPlayer.play("weapon_shoot_opti")
-			var instance = preload("res://weapons/bullet.tscn").instantiate()
-			instance.player = self
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().add_child(instance)
-			bullets -= 1
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(40), deg_to_rad(60))
-
-	if event.is_action_pressed("select_prop") and is_prop == true:
-		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
-			var prop = prop_selector.get_collider()
 			
-			var character = prop.get_child(0).duplicate()
-			var collisionShape = prop.get_child(1).duplicate()
-			
-			for child in $model.get_children():
-				child.free()
-			$collisionShape.replace_by(collisionShape)
-			$model.replace_by(character)
-			
-			$model.scale = character.scale * prop.scale
-			playerModel = $model
-			$collisionShape.scale = collisionShape.scale * prop.scale
-			health = prop.health
-			isMorphedIntoProp = true
 		
 func pickRoleSwitchCameras():
 	choseSides = true
