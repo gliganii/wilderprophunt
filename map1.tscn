@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=27 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_46jaj"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://djk33trxn7li8" path="res://buildings/blue_house/blue_house.tscn" id="20_mbqh5"]
 [ext_resource type="PackedScene" uid="uid://cqaeb0a3h1aec" path="res://buildings/flat/flat.tscn" id="21_v0the"]
 [ext_resource type="PackedScene" uid="uid://b3a8b8xo3blir" path="res://buildings/football_field/football_field.tscn" id="22_r256t"]
+[ext_resource type="PackedScene" uid="uid://d322p7d2vs2bs" path="res://buildings/dower_house/dower_house.tscn" id="23_gj4d4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(1000, 0.552, 1000)
@@ -618,25 +619,25 @@ collision_mask = 11
 [node name="horses" type="Node" parent="."]
 
 [node name="horse" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8477, 0.25, 11.274)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.3822, 0.25, 0.848328)
 collision_layer = 2
 collision_mask = 29
 mass = 0.01
 
 [node name="horse2" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(0.92402, 0, 0.382345, 0, 1, 0, -0.382345, 0, 0.92402, -46.6724, 0.25, 11.274)
+transform = Transform3D(0.92402, 0, 0.382345, 0, 1, 0, -0.382345, 0, 0.92402, -65.2069, 0.25, 0.848328)
 collision_layer = 2
 collision_mask = 29
 mass = 0.01
 
 [node name="horse3" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(-0.453508, 0, 0.891252, 0, 1, 0, -0.891252, 0, -0.453508, -47.407, 0.25, 15.8152)
+transform = Transform3D(-0.453508, 0, 0.891252, 0, 1, 0, -0.891252, 0, -0.453508, -65.9415, 0.25, 5.38953)
 collision_layer = 2
 collision_mask = 29
 mass = 0.01
 
 [node name="horse4" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(-0.759816, 0, 0.650138, 0, 1, 0, -0.650138, 0, -0.759816, -46.126, 0.25, 18.3327)
+transform = Transform3D(-0.759816, 0, 0.650138, 0, 1, 0, -0.650138, 0, -0.759816, -64.6605, 0.25, 7.90703)
 collision_layer = 2
 collision_mask = 29
 mass = 0.01
@@ -650,3 +651,8 @@ collision_mask = 11
 
 [node name="football_field" parent="." instance=ExtResource("22_r256t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0937, -1.91966, 86.9577)
+
+[node name="dower_house" parent="." instance=ExtResource("23_gj4d4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -88.717, 5.81571, 14.5024)
+collision_layer = 16
+collision_mask = 11

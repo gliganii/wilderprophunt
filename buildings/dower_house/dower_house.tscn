@@ -126,6 +126,7 @@ size = Vector3(0.0398004, 0.103839, 0.0231312)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0229137, -0.0148005, 0.00727129)
 
 [node name="preceptory_and_dower_house_-_game_asset" parent="." instance=ExtResource("1_4e3r0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00281963, 0, 0)
 
 [node name="log" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.084, 0, 0, 0, 0.084, 0, 0, 0, 0.084, 0.162543, -0.166358, -0.0279715)
