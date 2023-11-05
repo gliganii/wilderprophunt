@@ -6,6 +6,7 @@ extends MultiplayerSynchronizer
 @export var sprinting := false
 @export var inspecting := false
 @export var taunting := false
+@export var changed_prop := false
 
 func _ready():
 	set_process(get_multiplayer_authority() == multiplayer.get_unique_id())
@@ -30,6 +31,10 @@ func inspect():
 func taunt():
 	taunting = true
 	
+@rpc("call_local")
+func change_prop():
+	changed_prop = true
+	
 func _process(delta):
 	direction = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	if Input.is_action_just_pressed("click"):
@@ -42,3 +47,5 @@ func _process(delta):
 		inspect.rpc()
 	if Input.is_action_just_pressed("taunt"):
 		taunt.rpc()
+	if Input.is_action_pressed("select_prop"):
+		change_prop.rpc()

@@ -88,6 +88,23 @@ func _physics_process(delta):
 		get_parent().add_child(instance)
 		bullets -= 1
 	input.shooting = false
+	
+	if input.changed_prop and is_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
+		print(player, " ", is_prop)
+		var prop = prop_selector.get_collider()
+		var character = prop.get_child(0).duplicate()
+		var collisionShape = prop.get_child(1).duplicate()
+		
+		for child in $model.get_children():
+			child.free()
+		$collisionShape.replace_by(collisionShape)
+		$model.replace_by(character)
+		
+		$model.scale = character.scale * prop.scale
+		playerModel = $model
+		$collisionShape.scale = collisionShape.scale * prop.scale
+		health = prop.health
+	input.changed_prop = false
 
 	# show selectable prop
 	if is_prop:
@@ -125,23 +142,6 @@ func _input(event):
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(40), deg_to_rad(60))
-
-	if event.is_action_pressed("select_prop") and is_prop == true:
-		if prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
-			var prop = prop_selector.get_collider()
-			
-			var character = prop.get_child(0).duplicate()
-			var collisionShape = prop.get_child(1).duplicate()
-			
-			for child in $model.get_children():
-				child.free()
-			$collisionShape.replace_by(collisionShape)
-			$model.replace_by(character)
-			
-			$model.scale = character.scale * prop.scale
-			playerModel = $model
-			$collisionShape.scale = collisionShape.scale * prop.scale
-			health = prop.health
 			
 		
 func pickRoleSwitchCameras():
