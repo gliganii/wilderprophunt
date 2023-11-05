@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=26 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_46jaj"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://yweoop7phf4y" path="res://props/plastic_drum/plastic_drum.tscn" id="19_48250"]
 [ext_resource type="PackedScene" uid="uid://djk33trxn7li8" path="res://buildings/blue_house/blue_house.tscn" id="20_mbqh5"]
 [ext_resource type="PackedScene" uid="uid://cqaeb0a3h1aec" path="res://buildings/flat/flat.tscn" id="21_v0the"]
+[ext_resource type="PackedScene" uid="uid://b3a8b8xo3blir" path="res://buildings/football_field/football_field.tscn" id="22_r256t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(1000, 0.552, 1000)
@@ -197,7 +198,7 @@ collision_mask = 31
 health = 80
 
 [node name="concrete_barrier11" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(3.25993e-09, 0.997215, 0.0745784, 4.35897e-08, -0.0745784, 0.997215, 1, 0, -4.37114e-08, 32.5159, 0.552, 86.2917)
+transform = Transform3D(1.22076e-08, 0.960211, 0.279276, 4.19722e-08, -0.279276, 0.960211, 1, -2.21426e-16, -4.37114e-08, 32.5159, 1.10386, 86.2917)
 collision_layer = 2
 collision_mask = 31
 health = 80
@@ -646,3 +647,6 @@ mass = 0.01
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 106.344, -1.27381, 17.65)
 collision_layer = 16
 collision_mask = 11
+
+[node name="football_field" parent="." instance=ExtResource("22_r256t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0937, -1.91966, 86.9577)
