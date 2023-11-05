@@ -435,7 +435,7 @@ offset_right = 76.0
 offset_bottom = 156.0
 text = "Prop"
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+[node name="TauntStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_jwkwx")
 
 [connection signal="button_down" from="PickWindow/PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]

@@ -67,9 +67,8 @@ func _physics_process(delta):
 		$AnimationPlayer.play("inspect_weapon_opti")
 	input.inspecting = false
 	
-	if input.taunting and !$AudioStreamPlayer3D.is_playing():
-		$AudioStreamPlayer3D.stream = taunt
-		$AudioStreamPlayer3D.play()
+	if input.taunting and !$TauntStreamPlayer3D.is_playing():
+		$TauntStreamPlayer3D.play()
 	input.taunting = false
 
 	var direction = (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
