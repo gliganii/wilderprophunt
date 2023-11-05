@@ -198,7 +198,7 @@ collision_mask = 31
 health = 80
 
 [node name="concrete_barrier11" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(3.25993e-09, 0.997215, 0.0745784, 4.35897e-08, -0.0745784, 0.997215, 1, 0, -4.37114e-08, 32.5159, 0.552, 86.2917)
+transform = Transform3D(1.22076e-08, 0.960211, 0.279276, 4.19722e-08, -0.279276, 0.960211, 1, -2.21426e-16, -4.37114e-08, 32.5159, 1.10386, 86.2917)
 collision_layer = 2
 collision_mask = 31
 health = 80
