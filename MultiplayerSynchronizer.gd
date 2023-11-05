@@ -3,7 +3,10 @@ extends MultiplayerSynchronizer
 @export var jumping := false
 @export var direction := Vector2()
 @export var shooting := false
-@export var bullet := false
+@export var sprinting := false
+@export var inspecting := false
+@export var taunting := false
+@export var changed_prop := false
 
 func _ready():
 	set_process(get_multiplayer_authority() == multiplayer.get_unique_id())
@@ -17,13 +20,32 @@ func shoot():
 	shooting = true
 	
 @rpc("call_local")
-func pewpew():
-	bullet = true
+func sprint():
+	sprinting = true
+	
+@rpc("call_local")
+func inspect():
+	inspecting = true
+	
+@rpc("call_local")
+func taunt():
+	taunting = true
+	
+@rpc("call_local")
+func change_prop():
+	changed_prop = true
 	
 func _process(delta):
 	direction = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	if Input.is_action_just_pressed("click"):
 		shoot.rpc()
-		pewpew.rpc()
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()
+	if Input.is_action_just_pressed("sprint"):
+		sprint.rpc()
+	if Input.is_action_just_pressed("inspect"):
+		inspect.rpc()
+	if Input.is_action_just_pressed("taunt"):
+		taunt.rpc()
+	if Input.is_action_pressed("select_prop"):
+		change_prop.rpc()
