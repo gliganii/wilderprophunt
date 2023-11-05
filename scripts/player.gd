@@ -19,7 +19,6 @@ const MOUSE_SENSITIVITY = 0.002
 @onready var prop_selector = $PropCamera/propSelector
 var bullet = load("res://weapons/bullet.tscn")
 var walk_sound = preload("res://sounds/interactions/Walking.mp3")
-var taunt = preload("res://sounds/taunts/Roxen_Mash.mp3")
 var camera
 @export var is_prop = false
 @export var health = 100
@@ -61,9 +60,8 @@ func _physics_process(delta):
 		speed_multiplier = RUNNING_SPEED_MULTIPLIER
 		
 	if Input.is_action_pressed("taunt"):
-		if !$AudioStreamPlayer3D.is_playing():
-			$AudioStreamPlayer3D.stream = taunt
-			$AudioStreamPlayer3D.play()
+		if !$AudioStreamPlayer3D2.is_playing():
+			$AudioStreamPlayer3D2.play()
 			$AnimationPlayer.play("inspect_weapon_opti")
 
 	var direction = (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
