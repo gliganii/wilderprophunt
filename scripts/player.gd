@@ -89,8 +89,7 @@ func _physics_process(delta):
 		bullets -= 1
 	input.shooting = false
 	
-	if input.changed_prop and is_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
-		print(player, " ", is_prop)
+	if input.changed_prop and prop_selector.is_colliding() and prop_selector.get_collider().is_in_group("props"):
 		var prop = prop_selector.get_collider()
 		var character = prop.get_child(0).duplicate()
 		var collisionShape = prop.get_child(1).duplicate()
