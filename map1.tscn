@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://co6hvjweafck8"]
+[gd_scene load_steps=25 format=3 uid="uid://co6hvjweafck8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_46jaj"]
 [ext_resource type="PackedScene" uid="uid://bghqliqi8bryx" path="res://props/sofa.tscn" id="2_axcgt"]
@@ -18,12 +18,17 @@
 [ext_resource type="PackedScene" uid="uid://sudubvldfxou" path="res://props/monitor/monitor.tscn" id="16_aaayq"]
 [ext_resource type="PackedScene" uid="uid://ulx8esyw1jjo" path="res://props/concrete_barrier/concrete_barrier.tscn" id="17_pgbx2"]
 [ext_resource type="PackedScene" uid="uid://b53f8rpanbyda" path="res://props/construction_barrel/construction_barrel.tscn" id="18_5b0xs"]
+[ext_resource type="PackedScene" uid="uid://yweoop7phf4y" path="res://props/plastic_drum/plastic_drum.tscn" id="19_48250"]
+[ext_resource type="PackedScene" uid="uid://djk33trxn7li8" path="res://buildings/blue_house/blue_house.tscn" id="20_mbqh5"]
+[ext_resource type="PackedScene" uid="uid://cqaeb0a3h1aec" path="res://buildings/flat/flat.tscn" id="21_v0the"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epruw"]
 size = Vector3(1000, 0.552, 1000)
 
 [sub_resource type="BoxMesh" id="BoxMesh_id3w7"]
 size = Vector3(1000, 0.5, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_f73a1"]
 
 [node name="root" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000495434, 0, 0)
@@ -40,6 +45,22 @@ shape = SubResource("BoxShape3D_epruw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00444496, 0)
 mesh = SubResource("BoxMesh_id3w7")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(30, 2.50556e-21, -1.09522e-28, 0, -1.31134e-06, -30, -2.50556e-21, 30, -1.31134e-06, -6.04733, 9.86964, -163.661)
+shape = SubResource("WorldBoundaryShape3D_f73a1")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-1.31134e-06, 30, -1.31134e-06, 0, -1.31134e-06, -30, -30, -1.31134e-06, 5.73206e-14, -93.5821, 9.86964, 122.876)
+shape = SubResource("WorldBoundaryShape3D_f73a1")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(3.57746e-07, -30, 1.31134e-06, 0, -1.31134e-06, -30, 30, 3.57746e-07, -1.56376e-14, 114.647, 9.86964, 125.925)
+shape = SubResource("WorldBoundaryShape3D_f73a1")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, -6.04733, 9.86964, 121.734)
+shape = SubResource("WorldBoundaryShape3D_f73a1")
+
 [node name="DirectionalLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(0.604611, -0.752402, 0.261414, -0.0398455, 0.299214, 0.953354, -0.795524, -0.586824, 0.150928, 67.3381, 56.8582, -73.2931)
 light_energy = 16.0
@@ -51,9 +72,9 @@ distance_fade_shadow = 630.4
 omni_range = 4096.0
 
 [node name="sofa" parent="." groups=["props"] instance=ExtResource("2_axcgt")]
-transform = Transform3D(0.00783644, 0, -0.999969, 0, 1, 0, 0.999969, 0, 0.00783644, 24.8345, 1.22269, -5.77058)
+transform = Transform3D(0.00783644, 0, -0.999969, 0, 1, 0, 0.999969, 0, 0.00783644, 32.7481, 0.231899, -5.77058)
 collision_mask = 13
-mass = 0.01
+mass = 20.0
 
 [node name="office_chair" parent="." groups=["props"] instance=ExtResource("3_t3yxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3546, 0.25, 2.31008)
@@ -68,45 +89,39 @@ spawn_path = NodePath("..")
 spawn_limit = 32
 
 [node name="airplane" parent="." groups=["props"] instance=ExtResource("4_j1468")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.88935, 0.25, -106.011)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046752, -0.682946, -106.011)
 collision_layer = 2
-collision_mask = 13
-mass = 0.01
-
-[node name="horse" parent="." groups=["props"] instance=ExtResource("5_xp1fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8472, 0.25, 11.274)
-collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 mass = 0.01
 
 [node name="soccer_ball" parent="." groups=["props"] instance=ExtResource("6_5d7dt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3299, 0.710637, 5.78652)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 mass = 0.01
 
 [node name="chibi_anime" parent="." groups=["props"] instance=ExtResource("7_3rj65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2605, 0.25, -4.97206)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 mass = 0.01
 
 [node name="shoes" parent="." groups=["props"] instance=ExtResource("8_1usow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.122, 0.27119, 5.83098)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 mass = 0.01
 
 [node name="mug" parent="." groups=["props"] instance=ExtResource("9_p7wwi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7171, 0.277244, -1.48441)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 mass = 0.01
 
 [node name="skeleton" parent="." groups=["props"] instance=ExtResource("10_8fj86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69314, 0.260445, 24.8506)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 script = ExtResource("11_piuxo")
 health = 70
 
@@ -115,143 +130,519 @@ transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 
 collision_mask = 11
 
 [node name="runway" parent="." instance=ExtResource("13_04qio")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.73676, 0.275879, -67.369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 collision_layer = 16
 collision_mask = 11
-
-[node name="monitor" parent="." groups=["props"] instance=ExtResource("16_aaayq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23988, 0.280161, -5.79939)
-collision_layer = 2
-collision_mask = 13
 
 [node name="concrete_barriers" type="Node" parent="."]
 
 [node name="concrete_barrier2" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 34.9039)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5159, 0.552, 34.9039)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 24.0941, 0.276, 23.9577)
+transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 32.448, 0.276, 23.9577)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier3" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 16.5981)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5159, 0.552, 16.5981)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier4" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(0.389429, 0, -0.921056, 0, 1, 0, 0.921056, 0, 0.389429, 24.0941, 0.276, 9.23944)
+transform = Transform3D(0.389429, 0, -0.921056, 0, 1, 0, 0.921056, 0, 0.389429, 32.448, 0.276, 9.23944)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier5" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.1711, 0.828, 1.45136)
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 32.525, 0.828, 1.45136)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier6" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 24.323, 0.552, -13.204)
+transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 32.6769, 0.510556, -13.204)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier7" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.5385, 0.828, -20.5608)
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 32.8924, 0.255653, -20.5608)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier8" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 24.6184, 0.552, -27.9193)
+transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 32.9723, 0.253448, -27.9193)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier9" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.162, 0.552, 63.5976)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5159, 0.552, 63.5976)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier10" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 24.0941, 0.276, 93.6513)
+transform = Transform3D(-0.0556124, 0, -0.998452, 0, 1, 0, 0.998452, 0, -0.0556124, 32.448, 0.276, 93.6513)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier11" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(3.25993e-09, 0.997215, 0.0745784, 4.35897e-08, -0.0745784, 0.997215, 1, 0, -4.37114e-08, 24.162, 0.552, 86.2917)
+transform = Transform3D(3.25993e-09, 0.997215, 0.0745784, 4.35897e-08, -0.0745784, 0.997215, 1, 0, -4.37114e-08, 32.5159, 0.552, 86.2917)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier12" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(0.0429916, 0, -0.999075, 0, 1, 0, 0.999075, 0, 0.0429916, 24.0941, 0.478834, 78.9331)
+transform = Transform3D(0.0429916, 0, -0.999075, 0, 1, 0, 0.999075, 0, 0.0429916, 32.448, 0.478834, 78.9331)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier13" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 24.1711, 0.557552, 71.145)
+transform = Transform3D(-0.0200701, 0, -0.999799, 0, 1, 0, 0.999799, 0, -0.0200701, 32.525, 0.557552, 71.145)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier14" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 24.323, 0.552, 56.4897)
+transform = Transform3D(-0.0756402, 0, -0.997135, 0, 1, 0, 0.997135, 0, -0.0756402, 32.6769, 0.552, 56.4897)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier15" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(-0.908705, 0, 0.417439, 0, 1, 0, -0.417439, 0, -0.908705, 28.9587, 0.828, 49.1329)
+transform = Transform3D(-0.908705, 0, 0.417439, 0, 1, 0, -0.417439, 0, -0.908705, 37.3126, 0.302205, 49.1329)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="concrete_barrier16" parent="concrete_barriers" groups=["props"] instance=ExtResource("17_pgbx2")]
-transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 24.6184, 0.552, 41.7744)
+transform = Transform3D(0.0229315, 0, -0.999738, 0, 1, 0, 0.999738, 0, 0.0229315, 32.9723, 0.552, 41.7744)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 health = 80
 
 [node name="runways_with_hangars" type="Node" parent="."]
 
 [node name="runway_with_hangar" parent="runways_with_hangars" instance=ExtResource("14_a5amd")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -264.881, 0.019042, 100.678)
-collision_layer = 16
-collision_mask = 11
+transform = Transform3D(-0.000139602, 0, 1, 0, 1, 0, -1, 0, -0.000139602, -105.522, 0.276001, -33.3478)
 
-[node name="runway_with_hangar2" parent="runways_with_hangars" instance=ExtResource("14_a5amd")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -265.291, -0.00925446, -13.8595)
-collision_layer = 16
-collision_mask = 11
+[node name="SpotLight3D" type="SpotLight3D" parent="runways_with_hangars"]
+transform = Transform3D(0.0354752, -0.571485, -0.819845, 0, -0.820362, 0.571845, -0.999371, -0.0202863, -0.0291025, -72.7827, 6.26292, -33.3855)
+light_energy = 100.0
+spot_range = 20.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="runways_with_hangars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5075, 6.46045, -33.4967)
 
 [node name="construction_barrels" type="Node" parent="."]
 
-[node name="construction_barrel" parent="construction_barrels" instance=ExtResource("18_5b0xs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5022, 0.280161, -18.7545)
+[node name="construction_barrel2" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0122, 0.288794, -36.2091)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1498, 0.280161, -18.7545)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel4" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.893567, -0.448929, 0, 0.448929, 0.893567, 0, 0, 0, 1, -32.6284, 0.839231, -38.0554)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel5" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.99984, -0.0178529, -0.000736273, -0.000808971, -0.0863929, 0.996261, -0.0178497, -0.996101, -0.0863935, -32.5002, 0.644269, -37.0264)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel6" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6854, 0.483447, -38.8952)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel9" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.979227, 0.202421, 0.0118019, -0.00145123, -0.0512066, 0.998687, 0.20276, -0.977959, -0.0498491, -34.4495, 0.795742, -33.8134)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel10" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.85886, 0.00203406, -0.512206, -0.00564208, 0.999969, -0.00548968, 0.512179, 0.00760452, 0.858845, -34.7532, 0.40395, -34.9438)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel11" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.859259, 0.027212, -0.510817, -0.0399336, 0.999105, -0.0139497, 0.50998, 0.0323852, 0.859576, -35.1261, 0.364145, -32.9924)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel12" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.864844, -0.0198301, -0.501649, 0.0212191, 0.999771, -0.00293881, 0.501593, -0.00810285, 0.865066, -35.4937, 1.28336, -34.5005)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel13" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(-0.427405, 0, 0.90406, 0, 1, 0, -0.90406, 0, -0.427405, -32.382, 0.288794, -35.558)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel15" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(-0.375965, 0, -0.926634, 0, 1, 0, 0.926634, 0, -0.375965, -32.0122, 0.288794, -36.9584)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel3" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9291, 0.96069, -37.054)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel7" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(0.723919, 0.689885, 0, -0.689885, 0.723919, 0, 0, 0, 1, -35.0152, 0.635591, -33.3109)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel8" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(-0.048321, -0.995879, 0.0767466, 0.998792, -0.0488626, -0.005196, 0.00892456, 0.0764026, 0.997037, -33.2483, 2.14624, -34.1749)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
+
+[node name="construction_barrel14" parent="construction_barrels" groups=["props"] instance=ExtResource("18_5b0xs")]
+transform = Transform3D(-0.460711, 0, -0.88755, 0, 1, 0, 0.88755, 0, -0.460711, -32.3668, 1.54984, -36.6798)
+collision_layer = 2
+collision_mask = 31
+mass = 0.5
+health = 20
 
 [node name="mailboxes" type="Node" parent="."]
 
 [node name="mailbox" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.986, 0.276, 28.1228)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4316, 0.276, 29.1203)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 
 [node name="mailbox2" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -37.1834, 0.276, 27.8749)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -32.1834, 0.276, 35.8749)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
 
 [node name="mailbox3" parent="mailboxes" groups=["props"] instance=ExtResource("15_fieip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6186, 0.276, -69.2373)
 collision_layer = 2
-collision_mask = 13
+collision_mask = 31
+
+[node name="monitors" type="Node" parent="."]
+
+[node name="monitor" parent="monitors" groups=["props"] instance=ExtResource("16_aaayq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4069, 0.935917, -34.2357)
+collision_layer = 2
+collision_mask = 31
+
+[node name="monitor2" parent="monitors" groups=["props"] instance=ExtResource("16_aaayq")]
+transform = Transform3D(0.562069, 0.0113909, 0.827012, -0.0202619, 0.999795, -6.79739e-10, -0.826842, -0.0167568, 0.562184, -35.354, 0.400196, -34.436)
+collision_layer = 2
+collision_mask = 31
+
+[node name="plastic_drums" type="Node" parent="."]
+
+[node name="plastic_drum" parent="plastic_drums" instance=ExtResource("19_48250")]
+transform = Transform3D(0.669105, 0, 0.743168, 0, 1, 0, -0.743168, 0, 0.669105, -32.1222, 0.316167, -34.1914)
+
+[node name="plastic_drum2" parent="plastic_drums" instance=ExtResource("19_48250")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4728, 1.50193, 50.2246)
+
+[node name="plastic_drum3" parent="plastic_drums" instance=ExtResource("19_48250")]
+transform = Transform3D(0.931056, 0, -0.364877, 0, 1, 0, 0.364877, 0, 0.931056, -31.7184, 2.18406, 50.1513)
+
+[node name="blue_houses" type="Node" parent="."]
+
+[node name="blue_house" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(-0.0350739, 0, 0.999385, 0, 1, 0, -0.999385, 0, -0.0350739, -51.4273, 0.275999, 31.6639)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house4" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 55.7209, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house5" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 55.7209, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house6" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(-0.998656, 0, -0.0518303, 0, 1, 0, 0.0518303, 0, -0.998656, 93.1769, 0.275999, 41.0517)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house8" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 96.7209, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house9" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 96.7209, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house12" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 137.721, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house13" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 137.721, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house14" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 178.721, 0.275999, 45.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house15" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 178.721, 0.275999, 76.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house16" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 178.721, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house17" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 178.721, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house18" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, 45.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house19" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, 76.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house20" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house21" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house22" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, 45.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house23" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, 76.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house24" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house25" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house26" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, 45.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house27" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, 76.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house28" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house29" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house30" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, 45.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house31" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, 76.7978)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house32" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, 106.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house33" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, 137.798)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house34" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, -84.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house35" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, -53.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house36" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, -23.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house37" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 223.377, 0.275999, 7.50693)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house38" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, -84.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house39" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, -53.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house40" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, -23.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house41" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 264.377, 0.275999, 7.50693)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house42" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, -84.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house43" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, -53.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house44" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, -23.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house45" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 305.377, 0.275999, 7.50693)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house46" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, -84.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house47" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, -53.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house48" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, -23.4931)
+collision_layer = 16
+collision_mask = 11
+
+[node name="blue_house49" parent="blue_houses" instance=ExtResource("20_mbqh5")]
+transform = Transform3D(0.0167891, 0, -0.999859, 0, 1, 0, 0.999859, 0, 0.0167891, 346.377, 0.275999, 7.50693)
+collision_layer = 16
+collision_mask = 11
+
+[node name="horses" type="Node" parent="."]
+
+[node name="horse" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8477, 0.25, 11.274)
+collision_layer = 2
+collision_mask = 29
+mass = 0.01
+
+[node name="horse2" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
+transform = Transform3D(0.92402, 0, 0.382345, 0, 1, 0, -0.382345, 0, 0.92402, -46.6724, 0.25, 11.274)
+collision_layer = 2
+collision_mask = 29
+mass = 0.01
+
+[node name="horse3" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
+transform = Transform3D(-0.453508, 0, 0.891252, 0, 1, 0, -0.891252, 0, -0.453508, -47.407, 0.25, 15.8152)
+collision_layer = 2
+collision_mask = 29
+mass = 0.01
+
+[node name="horse4" parent="horses" groups=["props"] instance=ExtResource("5_xp1fl")]
+transform = Transform3D(-0.759816, 0, 0.650138, 0, 1, 0, -0.650138, 0, -0.759816, -46.126, 0.25, 18.3327)
+collision_layer = 2
+collision_mask = 29
+mass = 0.01
+
+[node name="flats" type="Node" parent="."]
+
+[node name="flat" parent="flats" instance=ExtResource("21_v0the")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 106.344, -1.27381, 17.65)
+collision_layer = 16
+collision_mask = 11
