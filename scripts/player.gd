@@ -36,6 +36,7 @@ func _ready():
 		camera = $PropCamera
 		add_to_group("propPlayers")
 	else:
+		$PropCamera/propSelector.enabled = false
 		camera = $HunterCamera
 		add_to_group("hunters")
 	
