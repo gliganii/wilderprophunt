@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://djk33trxn7li8"]
+
+[ext_resource type="PackedScene" uid="uid://dqrgjms05opb7" path="res://buildings/blue_house/blue_house.glb" id="1_4yaji"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qk4x"]
+size = Vector3(0.850164, 0.4483, 0.821509)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dsw8d"]
+size = Vector3(0.572048, 5.85021, 0.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mvsn3"]
+size = Vector3(5.03459, 0.363963, 0.675745)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mtad"]
+size = Vector3(13.1825, 0.382916, 5.26893)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2y5qn"]
+size = Vector3(0.494283, 1.25424, 4.50563)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11tla"]
+size = Vector3(0.0785608, 1.16593, 0.104055)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bql2"]
+size = Vector3(0.23267, 0.223683, 2.84113)
+
+[node name="blue_house" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 4.38974, 0)
+shape = SubResource("BoxShape3D_2qk4x")
+
+[node name="blue_house" parent="." instance=ExtResource("1_4yaji")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66203, 2.85552, 12.7926)
+shape = SubResource("BoxShape3D_dsw8d")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68534, 2.85552, 12.7926)
+shape = SubResource("BoxShape3D_dsw8d")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0328541, 0.18243, 15.2836)
+shape = SubResource("BoxShape3D_mvsn3")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0328541, 0.467164, 14.6813)
+shape = SubResource("BoxShape3D_mvsn3")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0328541, 0.740946, 14.068)
+shape = SubResource("BoxShape3D_mvsn3")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0328541, 1.04758, 13.4329)
+shape = SubResource("BoxShape3D_mvsn3")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33606, 10.5789)
+shape = SubResource("BoxShape3D_6mtad")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63648, 2.38738, 10.3161)
+shape = SubResource("BoxShape3D_2y5qn")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.66934, 2.38738, 10.3161)
+shape = SubResource("BoxShape3D_2y5qn")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.49003, 2.38738, 12.8198)
+shape = SubResource("BoxShape3D_2y5qn")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.29493, 2.38738, 12.8198)
+shape = SubResource("BoxShape3D_2y5qn")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1908, 0.916574, 15.4662)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1908, 1.21528, 14.8024)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1908, 1.52135, 14.1349)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1908, 1.81268, 13.4675)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19812, 0.916574, 15.4662)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19812, 1.21528, 14.8024)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19812, 1.52135, 14.1349)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19812, 1.81268, 13.4675)
+shape = SubResource("BoxShape3D_11tla")
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.888993, -0.45792, 0, 0.45792, 0.888993, 2.23793, 2.16728, 14.3031)
+shape = SubResource("BoxShape3D_6bql2")
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.888993, -0.45792, 0, 0.45792, 0.888993, -2.23795, 2.16728, 14.3031)
+shape = SubResource("BoxShape3D_6bql2")
+
+[node name="DirectionalLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999991, -0.00427595, 0, 0.00427595, 0.999991, 3.33001, 10.5985, 11.3536)
+light_color = Color(0.560784, 0.431373, 0.2, 1)
+light_energy = 5.042
+spot_angle = 20.0
+
+[node name="DirectionalLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.0735803, -0.0779314, 0.99424, -0.0060675, 0.996959, 0.0776955, -0.997271, -0.000315694, -0.0738294, 10.9023, 0.722187, -0.247865)
+light_color = Color(0.560784, 0.431373, 0.2, 1)
+light_energy = 5.042
+spot_angle = 20.0
+
+[node name="DirectionalLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(0.073814, 0.0165568, -0.997135, 0.00153716, -0.999863, -0.0164883, -0.997271, -0.000315693, -0.0738294, -11.5068, 0.722187, -0.247865)
+light_color = Color(0.560784, 0.431373, 0.2, 1)
+light_energy = 5.042
+spot_angle = 20.0
+
+[node name="DirectionalLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.0738272, 0.0129731, 0.997187, 0.000642993, 0.999916, -0.012961, -0.997271, -0.000315693, -0.0738294, -8.36329, 0.722187, -0.247865)
+light_color = Color(0.560784, 0.431373, 0.2, 1)
+light_energy = 5.042
+spot_angle = 20.0
+
+[node name="DirectionalLight3D5" type="SpotLight3D" parent="."]
+transform = Transform3D(0.0736602, -0.0720428, -0.994678, -0.00500486, -0.997401, 0.0718695, -0.997271, -0.000315696, -0.0738294, 8.35011, 0.722187, -0.247865)
+light_color = Color(0.560784, 0.431373, 0.2, 1)
+light_energy = 5.042
+spot_angle = 20.0

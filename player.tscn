@@ -1,25 +1,346 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi1hkq1rk41ex"]
+[gd_scene load_steps=29 format=3 uid="uid://bi1hkq1rk41ex"]
 
 [ext_resource type="PackedScene" uid="uid://bakcj8o40xl6e" path="res://art/character.glb" id="1_2fvoi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hny0h"]
 [ext_resource type="PackedScene" uid="uid://dlnohswdy866h" path="res://bulletCount.tscn" id="2_bpimo"]
 [ext_resource type="PackedScene" uid="uid://cow6jxa0rd1om" path="res://healthBar.tscn" id="3_tv7wt"]
 [ext_resource type="PackedScene" uid="uid://cp04231xtu0ys" path="res://weapons/small_gun.tscn" id="3_vo5bf"]
+[ext_resource type="Script" path="res://MultiplayerSynchronizer.gd" id="4_52aqd"]
+[ext_resource type="AudioStream" uid="uid://bvggmfo6atdf8" path="res://sounds/taunts/AMODO_BAZOOKA.mp3" id="7_lucmj"]
+[ext_resource type="AudioStream" uid="uid://c670hoinnii3" path="res://sounds/taunts/Based_DoomGuy.mp3" id="8_da7rm"]
+[ext_resource type="AudioStream" uid="uid://ccfpie50eh2ki" path="res://sounds/taunts/urmatoarea_oprire__MA-TA.mp3" id="9_302rb"]
+[ext_resource type="AudioStream" uid="uid://dnymkmtejq58r" path="res://sounds/taunts/DISGUSTANG.mp3" id="9_xmp7l"]
+[ext_resource type="AudioStream" uid="uid://dax1pdmux4x70" path="res://sounds/taunts/Lui_Razvan.mp3" id="10_3mk0w"]
+[ext_resource type="AudioStream" uid="uid://diivoyt5vgekh" path="res://sounds/taunts/Wingardium_Leviosa.mp3" id="10_xf0nk"]
+[ext_resource type="AudioStream" uid="uid://y1l0kjx84pr4" path="res://sounds/taunts/The_Magic_Kurwa.mp3" id="11_ju32o"]
+[ext_resource type="AudioStream" uid="uid://cqfjtrmqal6k0" path="res://sounds/taunts/LET_ME_TELL_YOU_SOMETHING.mp3" id="12_oihh6"]
+[ext_resource type="AudioStream" uid="uid://deyjkjsgvih8t" path="res://sounds/taunts/Maaaai.mp3" id="14_um2xd"]
+[ext_resource type="AudioStream" uid="uid://c7sfcyrcgvb45" path="res://sounds/taunts/Rick_Roll.mp3" id="15_0oyw7"]
+[ext_resource type="AudioStream" uid="uid://vue004m35cvo" path="res://sounds/taunts/Roxen_Mash.mp3" id="16_ykbmu"]
+[ext_resource type="AudioStream" uid="uid://nfs3vvjvsl8b" path="res://sounds/taunts/Shrek_Anthem.mp3" id="17_xb7jw"]
+
+[sub_resource type="Animation" id="Animation_845gr"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.569, -0.579, -0.863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gqqf0"]
+resource_name = "inspect_weapon"
+length = 10.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.75, 1.9, 2.65, 2.95, 3.2, 4.05, 4.65, 5.65, 5.95, 6.85, 7.15, 8.2, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 0.535887, 1.46408, 0.435275, 1, 1, 1.41421, 1, 1.46409),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.2, 0.5, 0), Vector3(0.2, 0.5, 0), Vector3(0.1, 0, 0), Vector3(0.1, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0.7, 0), Vector3(0, 0.7, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.1, 0.2, 0), Vector3(0.1, 1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.7, 1.9, 2.65, 2.95, 3.2, 4.4, 4.65, 5.6, 5.75, 6.7, 7.15, 8.5, 8.75, 9.55),
+"transitions": PackedFloat32Array(1, 1, 1, 0.732044, 0.732044, 0.406126, 0.406126, 0.406126, 1.31951, 1.6245, 1, 1, 1, 0.63728, 2.14355, 0.68302, 0.63728),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.436332, 0.698132, 0), Vector3(0.436332, 0.698132, 0), Vector3(-0.610865, -0.349066, 0), Vector3(-0.610865, -0.349066, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.523599), Vector3(0, 0, -12.5664), Vector3(0, 0, -12.2522), Vector3(0, 0, -6.28319), Vector3(0, 0, -6.28319), Vector3(1.5708, 1.39626, -6.28319), Vector3(1.5708, 1.39626, -5.75959), Vector3(1.5708, 1.39626, -0.523599), Vector3(1.5708, 1.39626, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.75, 1.9, 2.65, 2.95, 3.2, 4.05, 4.65, 5.65, 5.95, 6.85, 7.15, 8.2, 9, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.569, -0.579, -0.863), Vector3(0.769, -0.079, -0.863), Vector3(0.769, -0.079, -0.863), Vector3(0.669, -0.579, -0.863), Vector3(0.669, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.679, -0.863), Vector3(0.569, 0.121, -0.863), Vector3(0.569, 0.121, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.669, -0.379, -0.863), Vector3(0.669, 0.421, -0.863), Vector3(0.569, -0.521, -0.863), Vector3(0.569, -0.521, -0.863)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.7, 1.9, 2.65, 2.95, 3.2, 4.4, 4.65, 5.6, 5.75, 6.7, 7.15, 7.95, 8.7, 9.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.170755),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0.523599, 1.5708, 0), Vector3(0.523599, 1.5708, 0), Vector3(-0.523599, 2.0944, 0), Vector3(-0.523599, 2.0944, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, -0.174533), Vector3(0, 1.5708, -6.28319), Vector3(0, 1.5708, -6.80678), Vector3(0, 1.5708, -12.5664), Vector3(0, 1.5708, -12.5664), Vector3(1.39626, 3.14159, -12.5664), Vector3(1.39626, 3.14159, -10.9956), Vector3(1.39626, 3.14159, -6.28319), Vector3(0, 1.5708, -0.523599), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x3g24"]
+resource_name = "inspect_weapon_opti"
+length = 10.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.75, 1.9, 2.65, 2.95, 3.2, 4.05, 4.65, 5.65, 6.85, 7.15, 8.2, 9, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.569, -0.579, -0.863), Vector3(0.769, -0.079, -0.863), Vector3(0.769, -0.079, -0.863), Vector3(0.469, -0.179, -0.6), Vector3(0.469, -0.179, -0.6), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.679, -0.863), Vector3(0.569, 0.121, -0.863), Vector3(0.569, 0.121, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.579, -0.863), Vector3(0.669, -0.379, -0.863), Vector3(0.669, 0.421, -0.863), Vector3(0.569, -0.521, -0.863), Vector3(0.569, -0.521, -0.863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9, 1.7, 1.9, 2.65, 2.95, 3.2, 4.4, 4.65, 5.6, 5.75, 6.7, 7.15, 7.95, 8.7, 9.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.170755),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0.523599, 1.5708, 0), Vector3(0.523599, 1.5708, 0), Vector3(-0.872665, 0.872665, 0), Vector3(-0.872665, 0.872665, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, -0.174533), Vector3(0, 1.5708, -6.28319), Vector3(0, 1.5708, -6.80678), Vector3(0, 1.5708, -12.5664), Vector3(0, 1.5708, -12.5664), Vector3(1.39626, 3.14159, -12.5664), Vector3(1.39626, 3.14159, -10.9956), Vector3(1.39626, 3.14159, -6.28319), Vector3(0, 1.5708, -0.523599), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bl7rk"]
+resource_name = "weapon_shoot"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.001, 0.3, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.55),
+"transitions": PackedFloat32Array(1, 0.87055, 0.0947),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.392699), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.279, -0.863), Vector3(0.569, -0.579, -0.863)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.55),
+"transitions": PackedFloat32Array(1, 0.366021, 4.5948),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.436332), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gvc5r"]
+resource_name = "weapon_shoot_opti"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.569, -0.579, -0.863), Vector3(0.569, -0.279, -0.863), Vector3(0.569, -0.579, -0.863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.55),
+"transitions": PackedFloat32Array(1, 0.366021, 4.5948),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.436332), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6q3m"]
+_data = {
+"RESET": SubResource("Animation_845gr"),
+"inspect_weapon": SubResource("Animation_gqqf0"),
+"inspect_weapon_opti": SubResource("Animation_x3g24"),
+"weapon_shoot": SubResource("Animation_bl7rk"),
+"weapon_shoot_opti": SubResource("Animation_gvc5r")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jk6w4"]
 size = Vector3(1, 2.5125, 1)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qvpya"]
+properties/0/path = NodePath("../HunterCamera:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("..:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("../PropCamera:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:direction")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wcnbm"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:player")
+properties/2/spawn = true
+properties/2/sync = false
+properties/2/watch = false
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jwkwx"]
+resource_local_to_scene = true
+streams_count = 12
+stream_0/stream = ExtResource("7_lucmj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_da7rm")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_xmp7l")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_oihh6")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_3mk0w")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("14_um2xd")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("15_0oyw7")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("16_ykbmu")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("17_xb7jw")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("11_ju32o")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("9_302rb")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("10_xf0nk")
+stream_11/weight = 1.0
+
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 5
+collision_mask = 29
 script = ExtResource("1_hny0h")
+metadata/_edit_horizontal_guides_ = [94.0, 124.0]
+metadata/_edit_vertical_guides_ = [14.0]
 
-[node name="bulletBar" parent="." instance=ExtResource("2_bpimo")]
-position = Vector2(1020, 8)
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="healthBar" parent="." instance=ExtResource("3_tv7wt")]
+[node name="HealthControl" type="Control" parent="Stats"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="healthBar" parent="Stats/HealthControl" instance=ExtResource("3_tv7wt")]
+
+[node name="BulletControl" type="Control" parent="Stats"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+
+[node name="bulletBar" parent="Stats/BulletControl" instance=ExtResource("2_bpimo")]
+position = Vector2(-137, 13)
+
+[node name="propSelectableLabel" type="Label" parent="Stats"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -33.0
+offset_right = 238.0
+offset_bottom = -7.0
+grow_vertical = 0
+text = "Press (E) to Morph into object"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HunterCamera/gun")
+libraries = {
+"": SubResource("AnimationLibrary_q6q3m")
+}
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://weapons/bullet.tscn")
+spawn_path = NodePath("../HunterCamera/gun")
+spawn_limit = 3
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2388, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.239, 0)
 shape = SubResource("BoxShape3D_jk6w4")
 
 [node name="model" parent="." instance=ExtResource("1_2fvoi")]
@@ -27,16 +348,95 @@ transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 
 
 [node name="HunterCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122524, 2.17514, -0.224958)
+current = true
 
 [node name="gun" parent="HunterCamera" instance=ExtResource("3_vo5bf")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.569355, -0.57873, -0.863129)
+transform = Transform3D(-1.81e-06, 0, 0.5, 0, 0.5, 0, -0.5, 0, -1.81e-06, 0.569, -0.579, -0.863)
 
 [node name="PropCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.36609, 3.74992)
 
 [node name="propSelector" type="RayCast3D" parent="PropCamera"]
-transform = Transform3D(100, 0, 0, 0, -3.4202, -93.9693, 0, 9.39693, -34.202, -0.00268841, 0.28965, -4.88209)
+transform = Transform3D(100, 0, 0, 0, -1.73648, -98.4808, 0, 9.84808, -17.3648, -0.003, 0, -4.882)
 collision_mask = 2
+debug_shape_thickness = 1
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_qvpya")
+script = ExtResource("4_52aqd")
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wcnbm")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35598, 0)
+
+[node name="PickWindow" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(450, 200)
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="PickControl" type="Control" parent="PickWindow"]
+layout_mode = 3
+anchor_left = 0.00186806
+anchor_right = 0.389
+anchor_bottom = 0.344
+offset_left = -0.840625
+offset_right = -0.81665
+offset_bottom = 1.088
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 36.0
+text = "Pick a side:"
+
+[node name="HunterDescLabel2" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 127.0
+offset_right = 435.0
+offset_bottom = 179.0
+text = "- They are the hunted. They must hide and
+morph into props in order to survive."
+
+[node name="HunterDescLabel" type="Label" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 65.0
+offset_right = 434.0
+offset_bottom = 117.0
+text = "- They hunt prop players. Hitting actual props
+will damage them."
+
+[node name="HunterPickButton" type="Button" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 62.0
+offset_right = 77.0
+offset_bottom = 93.0
+text = "Hunter
+"
+
+[node name="PropPickButton" type="Button" parent="PickWindow/PickControl"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 125.0
+offset_right = 76.0
+offset_bottom = 156.0
+text = "Prop"
+
+[node name="TauntStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_jwkwx")
+
+[connection signal="button_down" from="PickWindow/PickControl/HunterPickButton" to="." method="_on_hunter_pick_button_button_down"]
+[connection signal="button_down" from="PickWindow/PickControl/PropPickButton" to="." method="_on_prop_pick_button_button_down"]

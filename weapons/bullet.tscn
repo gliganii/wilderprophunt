@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bla54uobhspl4"]
+[gd_scene load_steps=9 format=3 uid="uid://bla54uobhspl4"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_56qix"]
 
@@ -13,6 +13,12 @@ metallic = 0.86
 emission_enabled = true
 emission = Color(0.568018, 0.472397, 0.170326, 1)
 emission_energy_multiplier = 5.79
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2n3x8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wkxnq"]
 radius = 0.0491414
@@ -47,6 +53,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qf5kp")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-3.698, 0, 0, 0, 0.246624, 0, 0, 0, 3.53322, 0, 0.0470174, 0)
 collision_mask = 11
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2n3x8")
 
 [node name="collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wkxnq")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsarff2uceo7i"
-path.s3tc="res://.godot/imported/building_0.png-ad05be54d70fafc7f55ddd166d604dbb.s3tc.ctex"
+uid="uid://dp0o4t1v3r6bs"
+path.s3tc="res://.godot/imported/runway_and_hangar_8.png-69b333266a7a882b55cbb67326fdc4e1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://buildings/building/building_0.png"
-dest_files=["res://.godot/imported/building_0.png-ad05be54d70fafc7f55ddd166d604dbb.s3tc.ctex"]
+source_file="res://buildings/runway_with_hangar/runway_and_hangar_8.png"
+dest_files=["res://.godot/imported/runway_and_hangar_8.png-69b333266a7a882b55cbb67326fdc4e1.s3tc.ctex"]
 
 [params]
 
@@ -21,12 +21,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://buildings/runway_with_hangar/runway_and_hangar_8.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

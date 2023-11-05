@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://sudubvldfxou"]
+
+[ext_resource type="Script" path="res://scripts/prop.gd" id="1_atw18"]
+[ext_resource type="PackedScene" uid="uid://blinqelmro7cj" path="res://props/monitor/old_crt_monitor_model.glb" id="1_e02gj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r6vbb"]
+size = Vector3(0.467954, 0.433214, 0.624573)
+
+[node name="monitor" type="RigidBody3D"]
+mass = 2.0
+script = ExtResource("1_atw18")
+health = 20
+
+[node name="model" parent="." instance=ExtResource("1_e02gj")]
+transform = Transform3D(1.60119, 0, -1.19841, 0, 2, 0, 1.19841, 0, 1.60119, 0, 0, 0)
+
+[node name="collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.431806, 0)
+shape = SubResource("BoxShape3D_r6vbb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44617, -0.697443)
+light_color = Color(0, 0.698039, 0.337255, 1)
+light_energy = 2.0
+distance_fade_begin = 2.0
+distance_fade_length = 5.0
+omni_range = 0.973716
+omni_attenuation = 0.0693481

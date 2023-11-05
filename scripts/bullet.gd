@@ -15,7 +15,7 @@ func _process(delta):
 		particles.emitting = true
 		if ray.get_collider().is_in_group("propPlayers"):
 			ray.get_collider().hit(damage)
-		else:
+		elif player != null:
 			player.hit(damage)
 		await get_tree().create_timer(5.0).timeout
 		queue_free()

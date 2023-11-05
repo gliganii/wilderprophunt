@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bsg8ai3dse5uy"
-path="res://.godot/imported/building.glb-f06a21516c62a8347bb70bcc9d2883bd.scn"
+uid="uid://caw4lrp338dcy"
+path="res://.godot/imported/city_hall.glb-c8649c20969730b8c7119c40e6aed184.scn"
 
 [deps]
 
-source_file="res://buildings/building/building.glb"
-dest_files=["res://.godot/imported/building.glb-f06a21516c62a8347bb70bcc9d2883bd.scn"]
+source_file="res://buildings/city_hall/city_hall.glb"
+dest_files=["res://.godot/imported/city_hall.glb-c8649c20969730b8c7119c40e6aed184.scn"]
 
 [params]
 
