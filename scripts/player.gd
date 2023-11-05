@@ -30,7 +30,8 @@ var choseSides = false
 func _ready():
 	#setup for before they choose a side
 	$HunterCamera/gun.visible = false
-	$Stats/BulletControl.visible = false
+	$Stats.visible = false
+	$PickWindow.visible = false
 	
 	if is_prop == true:
 		camera = $PropCamera
@@ -42,10 +43,13 @@ func _ready():
 	
 	if player == multiplayer.get_unique_id():
 		camera.current = true
+		$Stats.visible = true
+		$PickWindow.visible = true
 
 func _physics_process(delta):
-	$Stats/HealthControl/healthBar.value = health
-	$Stats/BulletControl/bulletBar.value = bullets
+	if player == multiplayer.get_unique_id():
+		$Stats/HealthControl/healthBar.value = health
+		$Stats/BulletControl/bulletBar.value = bullets
 	
 	var speed_multiplier = 1.0
 	
@@ -164,9 +168,7 @@ func pickRoleSwitchCameras():
 func _on_hunter_pick_button_button_down():
 	is_prop = false
 	pickRoleSwitchCameras()
-	pass # Replace with function body.
 
 func _on_prop_pick_button_button_down():
 	is_prop = true
 	pickRoleSwitchCameras()
-	pass # Replace with function body.
